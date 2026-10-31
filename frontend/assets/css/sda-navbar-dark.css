@@ -1,0 +1,82 @@
+/* Sunnah Digital Agency — navbar dark skin v1.0.
+   Scoped to the existing frontend header; no markup/JS changes required.
+   Built against .header-section/.header-wrapper from the existing main.css. */
+.header-section,
+.header-section.menu-fixed,
+.menu-fixed.header-section {
+  background:#000!important;
+  background-color:#000!important;
+  color:#f7f7f7;
+  box-shadow:0 1px 0 rgba(255,255,255,.1)!important;
+}
+.header-section .header-wrapper .main-menu > li > a {
+  color:#f6f6f6!important;
+}
+.header-section .header-wrapper .main-menu > li.active > a,
+.header-section .header-wrapper .main-menu > li > a:hover,
+.header-section .header-wrapper .main-menu > li > a:focus-visible {
+  color:#ed1c24!important;
+}
+.header-section .header-wrapper .main-menu > li > a i {
+  color:inherit;
+}
+/* Preserve the original login/register and Let's Talk destinations and style. */
+.header-section .header-wrapper .main-menu .btn-wrapper .cmn--btn-3 {
+  border:1px solid rgba(255,255,255,.65)!important;
+  border-radius:4px;
+  background:transparent!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+.header-section .header-wrapper .main-menu .btn-wrapper .cmn--btn-3:hover,
+.header-section .header-wrapper .main-menu .btn-wrapper .cmn--btn-3:focus-visible {
+  color:#fff!important;
+  border-color:#ed1c24!important;
+  background:#ed1c24!important;
+}
+/* Dropdown navigation remains legible on a dark surface. */
+@media (min-width:992px) {
+  .header-section .header-wrapper .main-menu .sub-menu {
+    background:#111!important;
+    border:1px solid #292929;
+    box-shadow:0 12px 32px rgba(0,0,0,.4);
+  }
+  .header-section .header-wrapper .main-menu .sub-menu li a {
+    color:#fff!important;
+  }
+  .header-section .header-wrapper .main-menu .sub-menu li:hover > a,
+  .header-section .header-wrapper .main-menu .sub-menu li a:focus-visible {
+    color:#ed1c24!important;
+  }
+}
+@media (max-width:991.98px) {
+  .header-section .header-wrapper .header-bar span,
+  .header-section .header-wrapper .header-bar span:first-child,
+  .header-section .header-wrapper .header-bar span:nth-child(2),
+  .header-section .header-wrapper .header-bar span:last-child {
+    background:#fff!important;
+  }
+  .header-section .header-wrapper .main-menu {
+    background:#0c0c0d!important;
+    border-top:1px solid #292929;
+  }
+  .header-section .header-wrapper .main-menu > li:not(:last-child) {
+    border-bottom:1px solid #252525!important;
+  }
+  .header-section .header-wrapper .main-menu .sub-menu {
+    background:#161616!important;
+  }
+  .header-section .header-wrapper .main-menu .sub-menu li a {
+    color:#f5f5f5!important;
+  }
+  .header-section .header-wrapper .main-menu .sub-menu li a:hover,
+  .header-section .header-wrapper .main-menu .sub-menu li a:focus-visible {
+    color:#ed1c24!important;
+  }
+}
+/* Visible keyboard focus with contrast on black. */
+.header-section a:focus-visible,
+.header-section .header-bar:focus-visible {
+  outline:2px solid #ed1c24;
+  outline-offset:3px;
+}

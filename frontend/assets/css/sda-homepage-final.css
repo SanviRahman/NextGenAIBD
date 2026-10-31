@@ -1,0 +1,65 @@
+/* Step-10 final refinements. Loaded AFTER sda-homepage-scale.css.
+   Only hero and consultation. Does not change existing JS/transitions/database. */
+/* Consultation: give the own-team photo more real estate, while narrowing form area. */
+@media(min-width:1051px){
+  .sda-consult .sda-consult__container{
+    width:min(1440px,calc(100% - 58px));
+    grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr);
+    gap:clamp(28px,2.8vw,46px);
+  }
+  .sda-consult .sda-consult__body{width:100%;max-width:560px;justify-self:end}
+  .sda-consult .sda-consult__visual{width:100%;max-width:none}
+}
+/* Place 3 distinct floating-card callouts around the portrait, not stacked on the right.
+   Keep pre-existing typewriter motion, slide timing and card up/down animations. */
+.sda-hero .sda-hero__highlight-inner{
+  border:1px solid rgba(182,204,250,.52);
+  border-radius:16px;
+  background:linear-gradient(140deg,rgba(72,87,120,.95),rgba(26,42,77,.94));
+  box-shadow:0 18px 45px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.12);
+}
+.sda-hero .sda-hero__highlight-inner:hover,.sda-hero .sda-hero__highlight-inner:focus-visible{
+  border-color:var(--sda-hero-accent);background:linear-gradient(145deg,#4c5d83,#203251);
+  box-shadow:0 23px 50px rgba(0,0,0,.36),0 0 0 2px color-mix(in srgb,var(--sda-hero-accent),transparent 70%);
+}
+@media(min-width:992px){
+  .sda-hero .sda-hero__highlight--1{top:auto;right:auto;left:3%;bottom:12%;width:clamp(154px,34%,225px)}
+  .sda-hero .sda-hero__highlight--1 .sda-hero__highlight-inner{flex-direction:row;text-align:left;min-height:84px;gap:10px;padding:12px}
+  .sda-hero .sda-hero__highlight--1 .sda-hero__highlight-copy{flex:1}
+  .sda-hero .sda-hero__highlight--1 .sda-hero__highlight-icon{width:52px;height:52px}
+  .sda-hero .sda-hero__highlight--2{top:43%;right:1.5%;left:auto;width:clamp(150px,27%,186px)}
+  .sda-hero .sda-hero__highlight--3{top:70%;right:1.5%;left:auto;width:clamp(150px,27%,186px)}
+}
+/* Tablet/mobile: put HERO IMAGE before content. Cards stay inside the art stage. */
+@media(max-width:991.98px){
+  .sda-hero .sda-hero__right{grid-row:1;width:100%;max-width:min(100%,690px);margin:0 auto}
+  .sda-hero .sda-hero__content{grid-row:2;width:100%;max-width:800px;margin:0 auto}
+  .sda-hero .sda-hero__container{gap:22px}
+  .sda-hero .sda-hero__highlight--1{top:auto;left:2%;bottom:11%;right:auto;width:clamp(138px,34%,195px)}
+  .sda-hero .sda-hero__highlight--1 .sda-hero__highlight-inner{flex-direction:row;min-height:78px;text-align:left;gap:6px}
+  .sda-hero .sda-hero__highlight--1 .sda-hero__highlight-icon{width:40px;height:40px}
+  .sda-hero .sda-hero__highlight--2{top:35%;right:1%;left:auto;width:clamp(118px,29%,170px)}
+  .sda-hero .sda-hero__highlight--3{top:65%;right:1%;left:auto;width:clamp(118px,29%,170px)}
+}
+@media(max-width:575.98px){
+  .sda-hero .sda-hero__stage{height:clamp(352px,108vw,435px)}
+  .sda-hero .sda-hero__image{width:77%;left:0;top:12%;height:80%}
+  .sda-hero .sda-hero__highlight--1{width:38%;bottom:10%;left:1%}
+  .sda-hero .sda-hero__highlight--2{width:33%;top:37%;right:0}
+  .sda-hero .sda-hero__highlight--3{width:33%;top:68%;right:0}
+  .sda-hero .sda-hero__highlight-inner{min-height:76px!important;padding:7px!important}
+  .sda-hero .sda-hero__highlight--1 .sda-hero__highlight-inner{flex-direction:column;text-align:center}
+  .sda-hero .sda-hero__highlight-icon{width:32px;height:27px}
+  .sda-hero .sda-hero__highlight-inner strong{font-size:10px}
+  .sda-hero .sda-hero__highlight-inner small{font-size:8.5px}
+  .sda-hero .sda-hero__caption{right:0;width:min(56%,215px)}
+  .sda-hero .sda-hero__nav{bottom:0;right:0}
+  .sda-hero .sda-hero__description{text-align:left!important}
+}
+
+/* Small laptop/tablet: preserve full consultation photo and prevent squeezed fields. */
+@media(min-width:801px) and (max-width:1050px){
+  .sda-consult .sda-consult__container{grid-template-columns:1fr;width:min(760px,calc(100% - 44px));gap:36px}
+  .sda-consult .sda-consult__visual{max-width:100%}
+  .sda-consult .sda-consult__body{max-width:720px;width:100%;margin:auto}
+}

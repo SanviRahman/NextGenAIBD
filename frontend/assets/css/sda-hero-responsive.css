@@ -1,0 +1,292 @@
+/* Mobile/tablet header must participate in document flow, instead of being
+   absolutely positioned above the hero. Sticky also prevents the scroll-class
+   .menu-fixed (which main.css sets to fixed) from covering the first image.
+   This CSS is included on the homepage ONLY. */
+@media (max-width:991.98px) {
+  .header-section,
+  .header-section.menu-fixed,
+  .menu-fixed.header-section {
+    position:sticky!important;
+    top:0!important;
+    left:auto!important;
+    right:auto!important;
+    width:100%!important;
+    z-index:9999!important;
+  }
+  .sda-hero { scroll-margin-top:90px; }
+}
+
+/* SDA Hero responsive image-first + sticky-clearance enhancement v2.1 (22 Oct 2026).
+   Homepage-only header clearance and hero at <=991.98px; original desktop design,
+   slideshow controls, and all other homepage modules are preserved.
+   Loaded after sda-homepage-final.css to prevent cascade conflicts. */
+@media (max-width:991.98px) {
+  .sda-hero {
+    min-height:0;
+    padding:clamp(20px,3vw,34px) 0 clamp(40px,6vw,60px);
+  }
+  .sda-hero .sda-hero__container {
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    width:calc(100% - 40px)!important;
+    max-width:760px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    gap:clamp(25px,5vw,36px)!important;
+    align-items:start;
+  }
+  /* Desired order: visual/slider FIRST, copy and CTAs SECOND on tablet/phone. */
+  .sda-hero .sda-hero__content {
+    grid-column:1;
+    grid-row:2;
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding:0;
+    min-width:0;
+  }
+  .sda-hero .sda-hero__right {
+    grid-column:1;
+    grid-row:1;
+    width:100%;
+    max-width:690px;
+    margin:0 auto;
+    min-width:0;
+  }
+  .sda-hero .sda-hero__eyebrow {
+    font-size:clamp(14px,2.9vw,18px)!important;
+    line-height:1.5!important;
+    margin-bottom:12px!important;
+  }
+  .sda-hero .sda-hero__title {
+    font-size:clamp(36px,6.25vw,54px)!important;
+    line-height:1.13!important;
+    overflow-wrap:break-word;
+    word-break:normal;
+    margin:0 0 18px!important;
+  }
+  .sda-hero .sda-hero__description {
+    font-size:clamp(15px,2.5vw,18px)!important;
+    line-height:1.65!important;
+    margin:0 0 25px!important;
+    text-align:left!important;
+    text-wrap:pretty;
+  }
+  .sda-hero .sda-hero__actions {gap:12px;}
+  .sda-hero .sda-hero__button {
+    min-height:53px;
+    font-size:15px!important;
+    padding:13px 18px;
+    overflow-wrap:anywhere;
+  }
+  .sda-hero .sda-hero__carousel {width:100%;}
+  .sda-hero .sda-hero__stage {max-width:100%;}
+}
+
+/* Phone and narrow tablet: allow every card and the FULL slide caption
+   to have its own readable space. No side-clipping / micro-text. */
+@media (max-width:767.98px) {
+  .sda-hero {
+    --sda-mobile-art-height:clamp(245px,74vw,365px);
+  }
+  .sda-hero .sda-hero__container {
+    width:calc(100% - 32px)!important;
+    gap:24px!important;
+  }
+  .sda-hero .sda-hero__title {
+    font-size:clamp(32px,7.8vw,44px)!important;
+    letter-spacing:-.025em!important;
+    line-height:1.14!important;
+  }
+  .sda-hero .sda-hero__actions {display:grid;grid-template-columns:minmax(0,1fr);gap:10px;}
+  .sda-hero .sda-hero__button {width:100%;min-width:0;max-width:none;min-height:52px;}
+
+  /* Compact first-screen portrait panel: visible below the black navbar. */
+  .sda-hero .sda-hero__right {padding-top:0;}
+  /* No off-screen boot motion on mobile; first artwork is visible instantly. */
+  .sda-hero .sda-hero__carousel.is-booting .sda-hero__slide.is-active {animation:none!important;}
+  .sda-hero .sda-hero__stage {
+    border-radius:16px;
+    background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 58%);
+    height:calc(var(--sda-mobile-art-height) + 282px);
+    overflow:hidden; /* slides transition as one scene; stage contains all mobile cards */
+  }
+  .sda-hero .sda-hero__slide {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:var(--sda-mobile-art-height) 86px 116px;
+    column-gap:10px;
+    row-gap:10px;
+    align-content:start;
+    padding:0 0 50px;
+  }
+  /* Top caption is full-width rather than overlapping the portrait. */
+  .sda-hero .sda-hero__caption {
+    position:relative;
+    inset:auto;
+    top:auto;
+    right:auto;
+    left:auto;
+    grid-row:2;
+    grid-column:1 / -1;
+    width:100%;
+    min-width:0;
+    max-width:none;
+    min-height:0;
+    height:auto;
+    padding:12px 15px;
+    border-radius:13px;
+    overflow:visible;
+  }
+  .sda-hero .sda-hero__caption-kicker {font-size:10px;line-height:1.35;margin-bottom:5px;}
+  .sda-hero .sda-hero__caption-text {font-size:clamp(12px,3vw,15px);line-height:1.4;min-height:0;overflow-wrap:anywhere;}
+  .sda-hero .sda-hero__blob {
+    top:calc(var(--sda-mobile-art-height) * .07);
+    left:11%;
+    width:78%;
+    height:calc(var(--sda-mobile-art-height) * .81);
+  }
+  .sda-hero .sda-hero__shape {
+    top:0;
+    left:5%;
+    width:90%;
+    height:var(--sda-mobile-art-height);
+    object-fit:contain;
+  }
+  .sda-hero .sda-hero__image {
+    top:0;
+    left:0;
+    width:100%;
+    height:var(--sda-mobile-art-height);
+    object-fit:contain;
+    object-position:center center;
+  }
+  .sda-hero .sda-hero__spark {
+    top:3%;
+    left:8%;
+    width:clamp(30px,8vw,48px);
+    height:clamp(30px,8vw,48px);
+  }
+  .sda-hero .sda-hero__highlight,
+  .sda-hero .sda-hero__highlight--1,
+  .sda-hero .sda-hero__highlight--2,
+  .sda-hero .sda-hero__highlight--3 {
+    position:relative;
+    inset:auto;
+    left:auto;
+    right:auto;
+    top:auto;
+    bottom:auto;
+    width:100%;
+    max-width:none;
+    min-width:0;
+    margin:0;
+    align-self:stretch;
+  }
+  .sda-hero .sda-hero__highlight--1 {grid-column:1;grid-row:3;}
+  .sda-hero .sda-hero__highlight--2 {grid-column:2;grid-row:3;}
+  .sda-hero .sda-hero__highlight--3 {grid-column:1 / -1;grid-row:4;}
+  .sda-hero .sda-hero__highlight-inner,
+  .sda-hero .sda-hero__highlight--1 .sda-hero__highlight-inner {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    width:100%;
+    height:100%;
+    min-height:0!important;
+    padding:8px 9px!important;
+    border-radius:12px;
+    text-align:center;
+    overflow:visible;
+  }
+  .sda-hero .sda-hero__highlight-icon,
+  .sda-hero .sda-hero__highlight--1 .sda-hero__highlight-icon {
+    flex:0 0 auto;
+    width:33px;
+    height:31px;
+    padding:2px;
+  }
+  .sda-hero .sda-hero__highlight-inner img {max-width:29px;max-height:27px;}
+  .sda-hero .sda-hero__highlight-inner strong {
+    font-size:clamp(11px,2.8vw,13px);
+    line-height:1.26;
+  }
+  .sda-hero .sda-hero__highlight-inner small {
+    font-size:clamp(10px,2.4vw,12px);
+    line-height:1.32;
+    margin-top:3px;
+    min-height:0;
+    overflow-wrap:anywhere;
+  }
+  .sda-hero .sda-hero__highlight--3 .sda-hero__highlight-inner {
+    flex-direction:row;
+    gap:12px;
+    justify-content:center;
+    padding:10px 15px!important;
+  }
+  .sda-hero .sda-hero__highlight--3 .sda-hero__highlight-icon {width:43px;height:42px;}
+  .sda-hero .sda-hero__highlight--3 .sda-hero__highlight-inner img {max-width:39px;max-height:38px;}
+  .sda-hero .sda-hero__highlight--3 .sda-hero__highlight-copy {width:auto;flex:0 1 auto;text-align:left;}
+  .sda-hero .sda-hero__nav {
+    right:50%;
+    bottom:8px;
+    transform:translateX(50%);
+    gap:12px;
+    opacity:1;
+  }
+  .sda-hero .sda-hero__arrow {width:38px;height:38px;}
+  .sda-hero .sda-hero__dot {width:9px;height:9px;}
+  .sda-hero .sda-hero__dot.is-active {width:25px;}
+}
+
+/* Small phones: keep the whole headline and CTA legible at 320-440px. */
+@media(max-width:575.98px) {
+  .sda-hero {padding:20px 0 42px;}
+  .sda-hero .sda-hero__container {width:calc(100% - 28px)!important;gap:21px!important;}
+  .sda-hero .sda-hero__eyebrow {font-size:14px!important; margin-bottom:10px!important;}
+  .sda-hero .sda-hero__title {font-size:clamp(31px,8vw,37px)!important;line-height:1.14!important;margin-bottom:15px!important;}
+  .sda-hero .sda-hero__description {font-size:15px!important;line-height:1.58!important;margin-bottom:20px!important;}
+  .sda-hero .sda-hero__button {min-height:50px;font-size:14px!important;padding:12px 16px;}
+  .sda-hero .sda-hero__highlight-inner strong {font-size:11.25px;}
+  .sda-hero .sda-hero__highlight-inner small {font-size:10px;line-height:1.34;}
+}
+
+@media (prefers-reduced-motion:reduce) and (max-width:991.98px) {
+  .sda-hero .sda-hero__slide.is-active .sda-hero__caption,
+  .sda-hero .sda-hero__slide.is-active .sda-hero__highlight {
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* v2.1: Reserve subtitle/caption line space while JS types and deletes.
+   This is an update to the EXISTING responsive stylesheet (no extra CSS file).
+   Desktop typography and image-first/sticky mobile ordering are unchanged. */
+@media (max-width:991.98px) {
+  .sda-hero .sda-hero__caption-text {
+    min-height:2.8em;
+    overflow-wrap:anywhere;
+  }
+  .sda-hero .sda-hero__highlight-subtitle {
+    display:block;
+    min-height:2.55em;
+    overflow-wrap:anywhere;
+  }
+}
+@media (max-width:991.98px) and (prefers-reduced-motion:no-preference) {
+  .sda-hero .sda-hero__caption.is-typing .sda-hero__caption-text::after,
+  .sda-hero .sda-hero__highlight-subtitle.is-card-typing::after {
+    display:inline-block;
+  }
+}
+
+/* v2.2: Hide only the THIRD hero floating card at mobile/tablet widths.
+   The actual card remains in admin/database and remains visible on desktop.
+   This scoped CSS change does not touch caption/card typing or slider JS. */
+@media (max-width:991.98px) {
+  .sda-hero .sda-hero__slide > .sda-hero__highlight--3 {
+    display:none!important;
+  }
+}

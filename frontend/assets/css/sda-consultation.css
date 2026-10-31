@@ -1,0 +1,144 @@
+/* Step-04: namespaced, original Sunnah consultancy UI; no global overrides. */
+.sda-consult {
+    --sda-consult-bg:#0b0f16;--sda-consult-accent:#c74659;
+    background:var(--sda-consult-bg);color:#f5f7fc;
+    padding:clamp(74px,7.5vw,120px) 0;
+    overflow:hidden;position:relative;isolation:isolate;
+}
+.sda-consult *, .sda-consult *::before, .sda-consult *::after {box-sizing:border-box;}
+.sda-consult__container {
+    width:min(1320px,calc(100% - 56px));margin:auto;
+    display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
+    gap:clamp(32px,3.5vw,58px);align-items:center;
+}
+.sda-consult__visual {position:relative;min-width:0;isolation:isolate;}
+/* Natural image ratio: no cropping, no image spill beyond the real frame edge. */
+.sda-consult__photo-frame {
+    position:relative;width:100%;height:auto;aspect-ratio:auto;overflow:hidden;
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:24px 96px 24px 24px;
+    background:linear-gradient(135deg,#16253b,#0b111b);
+    box-shadow:0 20px 56px rgba(0,0,0,.28);
+    isolation:isolate;
+}
+.sda-consult__photo {
+    display:block;width:100%;max-width:100%;height:auto;
+    object-fit:contain;object-position:center;
+    transform:none;
+    transition:filter 500ms cubic-bezier(.22,1,.36,1);
+}
+.sda-consult__visual:hover .sda-consult__photo {transform:none;filter:brightness(1.04);}
+.sda-consult__photo-shade {position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 43%,rgba(3,7,14,.86));}
+/* The former inset pseudo-border made the image look outside the frame. */
+.sda-consult__photo-frame::before {content:none;}
+.sda-consult__photo-caption {position:absolute;z-index:3;bottom:38px;left:32px;right:32px;
+    color:#f4f7fb;font-weight:750;font-size:clamp(19px,1.75vw,25px);line-height:1.5;
+    display:flex;align-items:flex-start;gap:12px;text-shadow:0 3px 14px rgba(0,0,0,.35);}
+.sda-consult__photo-marker {display:block;flex:none;width:4px;height:52px;background:var(--sda-consult-accent);border-radius:99px;}
+.sda-consult__body {min-width:0;}
+.sda-consult__eyebrow {color:var(--sda-consult-accent)!important;text-transform:uppercase;
+    font-size:14px!important;font-weight:800!important;letter-spacing:.14em;margin:0 0 15px!important;}
+.sda-consult__title {font-size:clamp(40px,4vw,58px)!important;line-height:1.13!important;
+    letter-spacing:-.032em!important;font-weight:800!important;color:#fff!important;margin:0 0 21px!important;}
+.sda-consult__title span {color:var(--sda-consult-accent);}
+.sda-consult__intro {color:#b9c6d6!important;font-size:19px!important;line-height:1.72!important;margin:0 0 28px!important;}
+.sda-consult__form {width:100%;}
+.sda-consult__steps {display:flex;gap:0;justify-content:space-between;align-items:flex-start;position:relative;}
+.sda-consult__step {position:relative;z-index:1;display:flex;flex-direction:column;
+    align-items:center;flex:1 1 0;text-align:center;gap:11px;color:#8291a5;
+    transition:color 280ms ease;}
+.sda-consult__steps::before {content:'';position:absolute;top:20px;left:16.666%;right:16.666%;height:1px;background:rgba(225,232,239,.28);}
+.sda-consult__step-count {display:grid;place-items:center;width:42px;height:42px;
+    border:1px solid rgba(181,197,214,.45);border-radius:50%;background:var(--sda-consult-bg);
+    color:#8796a6;font-size:15px;font-weight:750;transition:background 250ms,border 250ms,color 250ms,transform 250ms;}
+.sda-consult__step-name {font-size:14px;font-weight:700;line-height:1.4;}
+.sda-consult__step.is-current,.sda-consult__step.is-done {color:#fff;}
+.sda-consult__step.is-current .sda-consult__step-count {border-color:var(--sda-consult-accent);background:var(--sda-consult-accent);color:#fff;transform:scale(1.08);}
+.sda-consult__step.is-done .sda-consult__step-count {border-color:var(--sda-consult-accent);color:var(--sda-consult-accent);}
+.sda-consult__progress {height:3px;background:rgba(225,232,239,.1);margin:23px 0 34px;border-radius:99px;overflow:hidden;}
+.sda-consult__progress span {display:block;width:0;height:100%;background:var(--sda-consult-accent);transition:width 350ms ease;}
+.sda-consult__panel {padding:0;border:0;min-width:0;margin:0;}
+.sda-consult__panel[hidden] {display:none!important;}
+.sda-consult__panel.is-entering {animation:sda-consult-enter 300ms cubic-bezier(.22,1,.36,1) both;}
+.sda-consult__field {margin-bottom:19px;}
+.sda-consult__field label {display:block;color:#d6e0e8;font-size:15px;font-weight:650;margin-bottom:9px;}
+.sda-consult__field label span:not(.sda-consult__optional) {color:var(--sda-consult-accent);}
+.sda-consult__optional {font-weight:450;color:#8496a8;}
+.sda-consult__field input,.sda-consult__field textarea {
+    width:100%;display:block;min-height:61px;border:1px solid rgba(161,181,200,.3);border-radius:7px;
+    background:rgba(255,255,255,.035);padding:16px 20px;color:#f8fafc;
+    font:inherit;font-size:17px;line-height:1.45;outline:none;
+    transition:border-color 180ms ease,background-color 180ms ease,box-shadow 180ms ease;
+}
+.sda-consult__field textarea {min-height:176px;resize:vertical;}
+.sda-consult__field input::placeholder,.sda-consult__field textarea::placeholder {color:#8e9eb2;opacity:1;}
+.sda-consult__field input:focus,.sda-consult__field textarea:focus {
+    border-color:var(--sda-consult-accent);background:rgba(255,255,255,.055);
+    box-shadow:0 0 0 3px color-mix(in srgb,var(--sda-consult-accent),transparent 77%);
+}
+.sda-consult__field small, .sda-consult__consent-error {display:block;color:#ff9ca7;font-size:13px;line-height:1.45;margin:6px 0 0;min-height:0;}
+.sda-consult__field.is-invalid input,.sda-consult__field.is-invalid textarea {border-color:#ff9ca7;}
+.sda-consult__help {font-size:16px;color:#a3b4c6;margin:0 0 25px;}
+.sda-consult__actions {display:flex;gap:13px;margin-top:25px;}
+.sda-consult__actions--split>* {flex:1;}
+.sda-consult__btn {border:1px solid var(--sda-consult-accent);border-radius:7px;
+    padding:17px 24px;min-height:62px;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font:inherit;font-size:17px;font-weight:750;line-height:1.2;cursor:pointer;
+    transition:background-color 240ms cubic-bezier(.2,.8,.2,1),color 240ms,border-color 240ms,transform 240ms,box-shadow 240ms;
+}
+.sda-consult__btn--next,.sda-consult__btn--submit {width:100%;background:var(--sda-consult-accent);color:#fff;}
+.sda-consult__btn--next:hover,.sda-consult__btn--submit:hover {background:#fff;color:#111b27;border-color:#fff;transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.22);}
+.sda-consult__btn--back {background:transparent;color:#f5f7fc;}
+.sda-consult__btn--back:hover {background:rgba(255,255,255,.1);border-color:#fff;transform:translateY(-2px);}
+.sda-consult__btn:focus-visible {outline:3px solid #ffe8a8;outline-offset:3px;}
+.sda-consult__btn:disabled {opacity:.6;cursor:wait;}
+.sda-consult__consent {display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.55;color:#b5c4d3;margin:18px 0 6px;cursor:pointer;}
+.sda-consult__consent input {appearance:auto;accent-color:var(--sda-consult-accent);flex:none;width:18px;height:18px;margin-top:1px;}
+.sda-consult__bottom-note {font-size:14px!important;line-height:1.55!important;color:#8293a7!important;margin:17px 0 0!important;}
+.sda-consult__alert {padding:13px 15px;border:1px solid;border-radius:7px;font-size:14px;line-height:1.5;margin:0 0 20px;}
+.sda-consult__alert--success {color:#bdf0d8;background:rgba(40,129,90,.15);border-color:rgba(70,189,137,.36);}
+.sda-consult__alert--error {color:#ffd2d8;background:rgba(189,59,76,.15);border-color:rgba(225,86,103,.43);}
+.sda-consult__captcha {max-width:100%;overflow:auto;margin:14px 0;}
+.sda-consult__trap {position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0;pointer-events:none;overflow:hidden;}
+[data-sda-consult-reveal] {transition:opacity 650ms cubic-bezier(.22,1,.36,1),transform 650ms cubic-bezier(.22,1,.36,1);}
+.sda-consult.is-js-ready [data-sda-consult-reveal] {opacity:0;transform:translateY(20px);}
+.sda-consult.is-js-ready [data-sda-consult-reveal].is-visible {opacity:1;transform:translateY(0);}
+.sda-consult.is-js-ready .sda-consult__visual[data-sda-consult-reveal] {transform:translateX(-26px);}
+.sda-consult.is-js-ready .sda-consult__visual[data-sda-consult-reveal].is-visible {transform:translateX(0);}
+@keyframes sda-consult-enter {from{opacity:0;transform:translateX(14px);}to{opacity:1;transform:translateX(0);}}
+@media(max-width:1050px) {
+    .sda-consult__container {gap:32px;}
+    .sda-consult__title {font-size:clamp(37px,4.3vw,52px)!important;}
+    .sda-consult__intro {font-size:18px!important;}
+}
+@media(max-width:800px) {
+    .sda-consult__container {width:calc(100% - 36px);grid-template-columns:1fr;gap:35px;}
+    .sda-consult__visual {max-width:720px;}
+    .sda-consult__photo-frame {aspect-ratio:auto;}
+    .sda-consult__body {width:100%;max-width:720px;margin:auto;}
+}
+@media(max-width:500px) {
+    .sda-consult {padding:60px 0;}
+    .sda-consult__container {width:calc(100% - 30px);gap:29px;}
+    .sda-consult__photo-frame {aspect-ratio:auto;border-radius:16px 45px 16px 16px;}
+    .sda-consult__photo-frame::before {content:none;}
+    .sda-consult__photo-caption {bottom:16px;left:18px;right:18px;font-size:17px;}
+    .sda-consult__photo-marker {height:40px;}
+    .sda-consult__title {font-size:clamp(35px,8.5vw,43px)!important;}
+    .sda-consult__intro {font-size:16.5px!important;line-height:1.7!important;}
+    .sda-consult__eyebrow {font-size:12px!important;}
+    .sda-consult__field label {font-size:14px;}
+    .sda-consult__field input,.sda-consult__field textarea {min-height:56px;padding:14px 15px;}
+    .sda-consult__field textarea {min-height:158px;}
+    .sda-consult__field {margin-bottom:17px;}
+    .sda-consult__progress {margin:18px 0 27px;}
+    .sda-consult__step-name {font-size:12px;}
+    .sda-consult__steps::before {top:18px;}
+    .sda-consult__step-count {width:38px;height:38px;font-size:14px;}
+    .sda-consult__btn {padding:14px 14px;min-height:56px;font-size:16px;}
+    .sda-consult__field input,.sda-consult__field textarea {font-size:16px;}
+}
+@media(prefers-reduced-motion:reduce) {
+    .sda-consult *,.sda-consult *::before,.sda-consult *::after {animation:none!important;transition:none!important;}
+    .sda-consult.is-js-ready [data-sda-consult-reveal] {opacity:1!important;transform:none!important;}
+}

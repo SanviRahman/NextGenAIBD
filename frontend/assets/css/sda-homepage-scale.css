@@ -1,0 +1,171 @@
+/* Sunnah Digital Agency — Homepage-only scale refinement v1.0
+ * Loaded after the section-specific CSS via the homepage Blade stack.
+ * No animation timing, modal positioning, carousel transforms, routes,
+ * form logic, JS, admin pages or non-homepage pages are changed.
+ */
+
+/* 01. Hero: add breathing room without altering the right carousel viewport. */
+@media (min-width: 1101px) {
+  .sda-hero .sda-hero__container {
+    max-width: 1420px;
+    width: calc(100% - 58px);
+    gap: clamp(34px, 3.5vw, 62px);
+  }
+}
+.sda-hero .sda-hero__eyebrow {font-size: clamp(19px, 1.7vw, 23px);}
+.sda-hero .sda-hero__title {font-size: clamp(54px, 5.25vw, 80px);}
+.sda-hero .sda-hero__description {font-size: clamp(19px, 1.7vw, 23px); line-height: 1.76; max-width: 740px;}
+.sda-hero .sda-hero__button {min-height: 67px; padding: 19px 32px; font-size: 17px;}
+
+/* 02. Spotlight: increase heading width while retaining full-bleed video. */
+.sda-spotlight .sda-spotlight__container {width: min(1380px, calc(100% - 58px));}
+.sda-spotlight .sda-spotlight__intro {max-width: min(1150px, 100%);}
+.sda-spotlight .sda-spotlight__title {font-size: clamp(43px, 4.15vw, 60px) !important;}
+.sda-spotlight .sda-spotlight__description {font-size: clamp(19px, 1.65vw, 21px); max-width: 1100px;}
+.sda-spotlight .sda-spotlight__eyebrow {font-size: 16px;}
+
+/* 03. Services: roomier cards and readable descriptions; keep 3-column grid. */
+.sda-services .sda-services__container {max-width: 1420px; width: calc(100% - 58px);}
+.sda-services .sda-services__heading-block {max-width: 1030px;}
+.sda-services .sda-services__title {font-size: clamp(40px, 4vw, 61px) !important;}
+.sda-services .sda-services__intro {font-size: clamp(18px, 1.54vw, 21px) !important; max-width: 1030px;}
+.sda-services .sda-services__grid {gap: 25px;}
+.sda-services .sda-services__card,
+.sda-services .sda-services__card-link {min-height: 450px;}
+.sda-services .sda-services__card-link {padding: 62px clamp(22px, 3vw, 45px) 38px;}
+.sda-services .sda-services__card-title {font-size: clamp(25px, 2.16vw, 31px) !important;}
+.sda-services .sda-services__card-description {font-size: clamp(16.5px, 1.36vw, 18.5px) !important; line-height: 1.7 !important; max-width: 410px;}
+.sda-services .sda-services__view-all {font-size: 15px; min-height: 57px; padding: 16px 27px;}
+
+/* 04. Consultation: enlarge copy and inputs, preserve image natural ratio. */
+.sda-consult .sda-consult__container {width: min(1400px, calc(100% - 58px)); gap: clamp(36px, 3.7vw, 63px);}
+.sda-consult .sda-consult__title {font-size: clamp(43px, 4.22vw, 62px) !important;}
+.sda-consult .sda-consult__intro {font-size: 20px !important; line-height: 1.74 !important;}
+.sda-consult .sda-consult__photo-caption {font-size: clamp(20px, 1.9vw, 27px);}
+.sda-consult .sda-consult__step-name {font-size: 15px;}
+.sda-consult .sda-consult__field label {font-size: 16px;}
+.sda-consult .sda-consult__field input,
+.sda-consult .sda-consult__field textarea {font-size: 17.5px; min-height: 63px;}
+.sda-consult .sda-consult__btn {font-size: 17.5px; min-height: 65px;}
+
+/* 05. Ratings: leave logos and marquee track mechanics unchanged. */
+.sda-ratings .sda-ratings__title {font-size: clamp(40px, 4.3vw, 61px);}
+.sda-ratings .sda-ratings__description {font-size: clamp(18px, 1.55vw, 21px); max-width: 1120px;}
+
+/* 06. Benefits: more spacious text/list and supporting image. */
+.sda-benefits .sda-benefits__container {width: min(calc(100% - 58px), 1420px);}
+.sda-benefits .sda-benefits__header {max-width: 1160px;}
+.sda-benefits .sda-benefits__title {font-size: clamp(39px, 3.8vw, 57px);}
+.sda-benefits .sda-benefits__intro {font-size: clamp(18px, 1.55vw, 21px); max-width: 1050px;}
+.sda-benefits .sda-benefits__copy h3 {font-size: clamp(22px, 2vw, 29px);}
+.sda-benefits .sda-benefits__copy p {font-size: clamp(16.5px, 1.42vw, 19px); max-width: 700px; line-height: 1.64;}
+.sda-benefits .sda-benefits__list {gap: 28px;}
+.sda-benefits .sda-benefits__image-frame {min-height: 420px;}
+
+/* 07. Client logos: enlarge featured row without touching the flip transforms. */
+.sda-clients .sda-clients__container {width: min(1400px, calc(100% - 58px));}
+.sda-clients .sda-clients__header h2 {font-size: clamp(37px, 3.9vw, 57px);}
+.sda-clients .sda-clients__header p {font-size: 19px; max-width: 1100px;}
+.sda-clients .sda-clients__panel {padding: 27px;}
+.sda-clients .sda-clients__flip-card {height: 200px;}
+.sda-clients .sda-clients__flip-face .sda-clients__tile-link img {max-width: 245px; height: 118px;}
+/* The auto-moving lower row intentionally keeps its own track sizing. */
+
+/* 08. Video testimonials: larger heading, intro, and thumbnail captions. */
+.sda-testimonials .sda-testimonials__wrap {width: min(1400px, calc(100% - 58px));}
+.sda-testimonials .sda-testimonials__header h2 {font-size: clamp(39px, 3.85vw, 58px);}
+.sda-testimonials .sda-testimonials__header p {font-size: 19px; max-width: 1050px; line-height: 1.72;}
+.sda-testimonials .sda-testimonials__eyebrow {font-size: 14px;}
+.sda-testimonials .sda-testimonials__grid {gap: 25px;}
+.sda-testimonials .sda-testimonials__caption {font-size: 20px;}
+.sda-testimonials .sda-testimonials__all {font-size: 15px; min-height: 54px; padding: 16px 30px;}
+
+/* 09. Gallery: already enlarged in v1.1; only a subtle typography lift. */
+.sda-gallery .sda-gallery__head h2 {font-size: clamp(40px, 4.15vw, 60px);}
+.sda-gallery .sda-gallery__head p {font-size: 19.5px; max-width: 1120px;}
+
+/* Earlier template blocks still present below Step-09 (home page only). */
+.protfolio-section > .container,
+.about-section > .container,
+.team-section > .container,
+.testimonial-section > .container,
+.solution-section > .container {width: calc(100% - 58px); max-width: 1400px;}
+.protfolio-section .section-title,
+.about-section .section-title,
+.team-section .section-title,
+.testimonial-section .section-title,
+.solution-section .section-title {font-size: clamp(38px, 3.7vw, 57px); line-height: 1.2;}
+.protfolio-section .protfolio-content .title,
+.team-section .team-content .title,
+.testimonial-section .testimonial-inner .title {font-size: clamp(23px, 2vw, 30px); line-height: 1.3;}
+.protfolio-section .protfolio-content p,
+.about-section .about-content p,
+.team-section .team-content p,
+.testimonial-section .testimonial-inner p,
+.solution-section .solution-wrapper p {font-size: clamp(17px, 1.45vw, 20px); line-height: 1.72;}
+
+/* Tablet: prevent widened text and bigger cards from squeezing columns. */
+@media (max-width: 1100px) {
+  .sda-services .sda-services__card, .sda-services .sda-services__card-link {min-height: 420px;}
+  .sda-clients .sda-clients__flip-card {height: 170px;}
+  .sda-consult .sda-consult__container {gap: 32px;}
+}
+@media (max-width: 800px) {
+  .sda-hero .sda-hero__container,
+  .sda-spotlight .sda-spotlight__container,
+  .sda-services .sda-services__container,
+  .sda-consult .sda-consult__container,
+  .sda-benefits .sda-benefits__container,
+  .sda-clients .sda-clients__container,
+  .sda-testimonials .sda-testimonials__wrap {width: calc(100% - 36px);}
+  .sda-services .sda-services__grid, .sda-testimonials .sda-testimonials__grid {gap: 18px;}
+  .sda-benefits .sda-benefits__image-frame {min-height: 280px;}
+  .sda-clients .sda-clients__panel {padding: 16px;}
+  .protfolio-section > .container,
+  .about-section > .container,
+  .team-section > .container,
+  .testimonial-section > .container,
+  .solution-section > .container {width: calc(100% - 36px);}
+}
+@media (max-width: 600px) {
+  .sda-hero .sda-hero__eyebrow {font-size: clamp(16px, 4.4vw, 19px);}
+  .sda-hero .sda-hero__title {font-size: clamp(40px, 10vw, 53px);}
+  .sda-hero .sda-hero__description {font-size: 17px; line-height: 1.67;}
+  .sda-hero .sda-hero__button {min-height: 55px; padding: 14px 18px; font-size: 15px;}
+  .sda-spotlight .sda-spotlight__title {font-size: clamp(35px, 8.8vw, 44px) !important;}
+  .sda-spotlight .sda-spotlight__description {font-size: 17px;}
+  .sda-services .sda-services__title {font-size: clamp(35px, 8.8vw, 46px) !important;}
+  .sda-services .sda-services__intro {font-size: 17px !important;}
+  .sda-services .sda-services__card-link {padding: 38px 24px 31px;}
+  .sda-services .sda-services__card,
+  .sda-services .sda-services__card-link {min-height: 360px;}
+  .sda-services .sda-services__card-title {font-size: 25px !important;}
+  .sda-services .sda-services__card-description {font-size: 17px !important;}
+  .sda-consult .sda-consult__title {font-size: clamp(35px, 9vw, 44px) !important;}
+  .sda-consult .sda-consult__intro {font-size: 17px !important;}
+  .sda-consult .sda-consult__photo-caption {font-size: 18px;}
+  .sda-consult .sda-consult__field label {font-size: 15px;}
+  .sda-consult .sda-consult__field input,
+  .sda-consult .sda-consult__field textarea {font-size: 16px; min-height: 55px;}
+  .sda-consult .sda-consult__btn {font-size: 16px; min-height: 55px;}
+  .sda-ratings .sda-ratings__title {font-size: clamp(35px, 9vw, 43px);}
+  .sda-ratings .sda-ratings__description {font-size: 16.5px;}
+  .sda-benefits .sda-benefits__title {font-size: clamp(35px, 9vw, 45px);}
+  .sda-benefits .sda-benefits__intro {font-size: 17px;}
+  .sda-benefits .sda-benefits__copy h3 {font-size: 23px;}
+  .sda-benefits .sda-benefits__copy p {font-size: 16.5px; text-align: left;}
+  .sda-clients .sda-clients__header h2 {font-size: clamp(35px, 9vw, 44px);}
+  .sda-clients .sda-clients__header p {font-size: 17px;}
+  .sda-clients .sda-clients__flip-card {height: 145px;}
+  .sda-clients .sda-clients__flip-face .sda-clients__tile-link img {height: 75px; max-width: 100%;}
+  .sda-testimonials .sda-testimonials__header h2 {font-size: clamp(35px, 8.9vw, 44px);}
+  .sda-testimonials .sda-testimonials__header p {font-size: 17px;}
+  .sda-testimonials .sda-testimonials__caption {font-size: 18px;}
+  .sda-gallery .sda-gallery__head h2 {font-size: clamp(34px, 8.7vw, 44px);}
+  .sda-gallery .sda-gallery__head p {font-size: 16.5px;}
+  .protfolio-section .section-title,
+  .about-section .section-title,
+  .team-section .section-title,
+  .testimonial-section .section-title,
+  .solution-section .section-title {font-size: clamp(33px, 8.5vw, 42px);}
+}

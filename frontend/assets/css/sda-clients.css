@@ -1,0 +1,107 @@
+/* Sunnah Step-07 v2.0: rotating 3D featured cards + continuous logo marquee.
+   Every selector is scoped to this homepage section; no global .card/.btn overrides. */
+.sda-clients {
+  --sda-clients-bg:#101821;
+  --sda-clients-accent:#c74659;
+  --sda-clients-gap:18px;
+  background:var(--sda-clients-bg);
+  color:#f7f9fc;
+  padding:82px 0 98px;
+  overflow:hidden;
+}
+.sda-clients *, .sda-clients *::before, .sda-clients *::after {box-sizing:border-box}
+.sda-clients__container {width:min(1320px,calc(100% - 64px));margin-inline:auto}
+.sda-clients__header {margin-bottom:27px}
+.sda-clients__heading {display:flex;align-items:end;justify-content:space-between;gap:24px}
+.sda-clients__eyebrow {display:block;color:var(--sda-clients-accent);font-size:13px;font-weight:800;letter-spacing:.16em;margin-bottom:12px}
+.sda-clients__header h2 {margin:0;color:#fff;font-weight:800;font-size:clamp(32px,3.5vw,49px);letter-spacing:-.025em;line-height:1.16}
+.sda-clients__header h2::after {content:"";display:block;height:4px;width:100px;margin-top:13px;border-radius:4px;background:var(--sda-clients-accent)}
+.sda-clients__header p {max-width:1000px;margin:16px 0 0;color:#b1becd;font-size:17px;line-height:1.7}
+.sda-clients__motion-toggle {display:none;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.28);border-radius:8px;background:transparent;color:#e9eff8;font-family:inherit;font-size:13px;font-weight:600;line-height:1.2;padding:12px 15px;cursor:pointer;white-space:nowrap;transition:background-color 200ms,border-color 200ms}
+.sda-clients.sda-clients--js .sda-clients__motion-toggle {display:inline-flex}
+.sda-clients__motion-toggle:hover {background:rgba(255,255,255,.08);border-color:var(--sda-clients-accent)}
+.sda-clients__motion-toggle:focus-visible {outline:3px solid #fff;outline-offset:3px}
+.sda-clients__panel {padding:24px;background:#0c111b;border:1px solid rgba(255,255,255,.075);border-radius:13px}
+
+/* Upper row: four large perspective cards with individual alternating faces. */
+.sda-clients__featured {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sda-clients-gap);margin-bottom:22px}
+.sda-clients__flip-card {min-width:0;height:186px;perspective:1100px}
+.sda-clients__flip-inner {position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 1050ms cubic-bezier(.22,.72,.2,1);will-change:transform}
+.sda-clients__flip-card.is-flipped .sda-clients__flip-inner {transform:rotateY(180deg)}
+.sda-clients__flip-face {position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:3px;overflow:hidden}
+.sda-clients__flip-face--back {transform:rotateY(180deg);pointer-events:none}
+.sda-clients__flip-card.is-flipped .sda-clients__flip-face--front {pointer-events:none}
+.sda-clients__flip-card.is-flipped .sda-clients__flip-face--back {pointer-events:auto}
+.sda-clients__flip-face .sda-clients__tile {width:100%;height:100%}
+
+/* Reusable logo tile, whose HTML comes from the existing client-logo partial. */
+.sda-clients__tile {min-width:0}
+.sda-clients__tile-link {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;height:100%;min-height:0;padding:18px;background:radial-gradient(circle at 28% 23%,#fff 0%,#f6f8fb 34%,#e8ecf2 100%);border:1px solid #d9dfe7;border-radius:3px;text-decoration:none!important;text-align:center;cursor:default;transition:border-color 240ms,background-color 240ms,box-shadow 240ms}
+.sda-clients a.sda-clients__tile-link {cursor:pointer}
+.sda-clients__tile-link img {display:block;width:100%;max-width:230px;height:110px;object-fit:contain;filter:grayscale(15%);opacity:.94;transition:filter 300ms,opacity 300ms,transform 300ms}
+.sda-clients__tile-name {font-family:inherit;font-size:12px;font-weight:700;line-height:1.3;color:#485568;overflow-wrap:anywhere;max-width:100%}
+.sda-clients__tile:hover .sda-clients__tile-link, .sda-clients__tile:focus-within .sda-clients__tile-link {border-color:var(--sda-clients-accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--sda-clients-accent) 18%,transparent)}
+.sda-clients__tile:hover img, .sda-clients__tile:focus-within img {filter:grayscale(0);opacity:1;transform:scale(1.045)}
+.sda-clients__tile-link:focus-visible {outline:3px solid var(--sda-clients-accent);outline-offset:-3px}
+
+/* Lower row: duplicate identical groups. translateX(-50%) moves exactly one group.
+   The trailing group padding is intentionally included in both halves. */
+.sda-clients__marquee {position:relative;overflow:hidden;min-width:0;isolation:isolate}
+.sda-clients__marquee::before,.sda-clients__marquee::after {content:"";position:absolute;z-index:2;top:0;bottom:0;width:34px;pointer-events:none}
+.sda-clients__marquee::before {left:0;background:linear-gradient(to right,#0c111b,transparent)}
+.sda-clients__marquee::after {right:0;background:linear-gradient(to left,#0c111b,transparent)}
+.sda-clients__marquee-track {display:flex;width:max-content;transform:translate3d(0,0,0)}
+.sda-clients__marquee-group {display:flex;flex:0 0 auto;align-items:stretch;gap:14px;padding-right:14px}
+.sda-clients__marquee .sda-clients__tile {flex:0 0 207px;width:207px;height:120px}
+.sda-clients__marquee .sda-clients__tile-link {padding:12px}
+.sda-clients__marquee .sda-clients__tile-link img {height:67px;max-width:166px}
+.sda-clients__marquee .sda-clients__tile-name {font-size:10px}
+.sda-clients.sda-clients--js .sda-clients__marquee-group + .sda-clients__marquee-group {display:flex}
+.sda-clients.sda-clients--js:not(.sda-clients--single) .sda-clients__marquee-track {animation:sda-clients-marquee 33s linear infinite}
+@keyframes sda-clients-marquee {to {transform:translate3d(-50%,0,0)}}
+.sda-clients.is-paused .sda-clients__marquee-track,
+.sda-clients__marquee:hover .sda-clients__marquee-track,
+.sda-clients__marquee:focus-within .sda-clients__marquee-track {animation-play-state:paused!important}
+
+/* The reveal is applied ONLY to header and full panel, not individual moving cards. */
+.sda-clients.sda-clients--can-animate .sda-clients__header[data-sda-clients-reveal],
+.sda-clients.sda-clients--can-animate .sda-clients__panel[data-sda-clients-reveal] {opacity:0;transform:translateY(18px);transition:opacity 650ms cubic-bezier(.22,1,.36,1),transform 650ms cubic-bezier(.22,1,.36,1)}
+.sda-clients.sda-clients--can-animate .sda-clients__header[data-sda-clients-reveal].is-visible,
+.sda-clients.sda-clients--can-animate .sda-clients__panel[data-sda-clients-reveal].is-visible {opacity:1;transform:none}
+@media (max-width:1100px) {
+  .sda-clients__featured {gap:12px}
+  .sda-clients__flip-card {height:158px}
+  .sda-clients__flip-face .sda-clients__tile-link img {height:89px}
+}
+@media (max-width:720px) {
+  .sda-clients {padding:58px 0 66px}
+  .sda-clients__container {width:calc(100% - 32px)}
+  .sda-clients__header {margin-bottom:23px}
+  .sda-clients__header h2 {font-size:clamp(29px,7.8vw,38px)}
+  .sda-clients__header p {font-size:15px}
+  .sda-clients__heading {align-items:start;flex-direction:column;gap:12px}
+  .sda-clients__motion-toggle {font-size:12px;padding:9px 12px}
+  .sda-clients__panel {padding:12px}
+  .sda-clients__featured {grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:14px}
+  .sda-clients__flip-card {height:142px}
+  .sda-clients__flip-face .sda-clients__tile-link {padding:10px}
+  .sda-clients__flip-face .sda-clients__tile-link img {height:76px}
+  .sda-clients__tile-name {font-size:10px}
+  .sda-clients__marquee .sda-clients__tile {flex-basis:162px;width:162px;height:103px}
+  .sda-clients__marquee .sda-clients__tile-link img {height:58px}
+}
+@media (max-width:360px) {
+  .sda-clients__featured {gap:8px}
+  .sda-clients__flip-card {height:128px}
+  .sda-clients__flip-face .sda-clients__tile-link img {height:67px}
+}
+/* No JS and reduced-motion users always see static logos. Lower row scrolls manually. */
+@media(prefers-reduced-motion:reduce) {
+  .sda-clients__flip-inner,.sda-clients__tile-link,.sda-clients__tile-link img {transition:none!important}
+  .sda-clients__marquee-track {animation:none!important}
+  .sda-clients__marquee {overflow-x:auto;scrollbar-width:thin}
+  .sda-clients__marquee::before,.sda-clients__marquee::after {display:none}
+  .sda-clients.sda-clients--can-animate .sda-clients__header[data-sda-clients-reveal],
+  .sda-clients.sda-clients--can-animate .sda-clients__panel[data-sda-clients-reveal] {opacity:1;transform:none;transition:none}
+  .sda-clients__motion-toggle {display:none!important}
+}

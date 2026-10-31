@@ -1,0 +1,45 @@
+/* Sunnah Digital Agency — global frontend footer dark skin v1.1.
+   Scoped to the shared frontend footer; other page sections/admin unchanged. */
+.footer-section.sda-footer-dark {
+  background:#000!important;
+  background-color:#000!important;
+  color:#dedee2;
+}
+.sda-footer-dark .footer-top,
+.sda-footer-dark .footer-bottom { background:transparent!important; }
+.sda-footer-dark .footer-top .widget-items .footer-head .title,
+.sda-footer-dark h1,.sda-footer-dark h2,.sda-footer-dark h3,.sda-footer-dark h4 {
+  color:#fff!important;
+}
+.sda-footer-dark .footer-top .widget-items p,
+.sda-footer-dark .footer-top .widget-items .content-area p,
+.sda-footer-dark .footer-bottom p { color:#bec2ca!important; }
+.sda-footer-dark .footer-top .widget-items .content-area .quick-link li a,
+.sda-footer-dark .footer-top .widget-items .content-area .footer-contact-list li a,
+.sda-footer-dark .footer-top .widget-items .hellow li a,
+.sda-footer-dark .footer-bottom .footer-bottom-link li a,
+.sda-footer-dark .footer-bottom p a { color:#d6d9df!important; }
+.sda-footer-dark .footer-top .widget-items .content-area .quick-link li a:hover,
+.sda-footer-dark .footer-top .widget-items .content-area .footer-contact-list li a:hover,
+.sda-footer-dark .footer-top .widget-items .hellow li a:hover,
+.sda-footer-dark .footer-bottom a:hover,
+.sda-footer-dark .footer-top .widget-items .content-area .footer-social li a:hover i {
+  color:#ed1c24!important;
+}
+.sda-footer-dark .footer-top .widget-items .content-area .footer-social li a i {
+  color:#e5e5e9!important;
+}
+.sda-footer-dark .footer-bottom {
+  border-top:1px solid #303034;
+  border-bottom:1px solid #303034;
+}
+/* Background corner decorations are intentionally subdued on true black. */
+.sda-footer-dark > .shape,
+.sda-footer-dark > .shape2,
+.sda-footer-dark .shape,
+.sda-footer-dark .shape2 {
+  display:none!important;
+  animation:none!important;
+  background-image:none!important;
+  pointer-events:none!important;
+}

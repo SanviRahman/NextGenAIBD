@@ -1,0 +1,33 @@
+/* Step-06 — isolated Why Choose Us section. Does not affect global buttons/cards/layout. */
+.sda-benefits{--sda-benefits-bg:#17191d;--sda-benefits-accent:#c74659;background:var(--sda-benefits-bg);color:#fff;padding:84px 0 92px;isolation:isolate;overflow:hidden}
+.sda-benefits *, .sda-benefits *::before,.sda-benefits *::after{box-sizing:border-box}
+.sda-benefits__container{width:min(100% - 64px,1340px);margin:0 auto}
+.sda-benefits__header{max-width:1040px;margin:0 0 37px}
+.sda-benefits__title{font-family:inherit;font-size:clamp(34px,3.35vw,53px);letter-spacing:-.035em;font-weight:800;line-height:1.16;color:#fff;margin:0;display:inline;box-decoration-break:clone;text-decoration:underline;text-decoration-color:var(--sda-benefits-accent);text-decoration-thickness:3px;text-underline-offset:8px}
+.sda-benefits__intro{font-size:clamp(16px,1.4vw,19px);line-height:1.65;color:#aab2c1;max-width:850px;margin:20px 0 0}
+.sda-benefits__grid{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:clamp(30px,4vw,70px);align-items:center}
+.sda-benefits__list{display:grid;gap:26px}
+.sda-benefits__item{display:flex;gap:24px;align-items:flex-start;transition:transform 220ms cubic-bezier(.2,.8,.2,1);min-width:0}
+.sda-benefits__item:hover{transform:translateX(5px)}
+.sda-benefits__check{color:var(--sda-benefits-accent);width:58px;height:58px;display:grid;place-items:center;flex:none;margin-top:2px;transition:transform 250ms ease-out}
+.sda-benefits__check svg{width:55px;height:55px;display:block}
+.sda-benefits__item:hover .sda-benefits__check{transform:scale(1.08)}
+.sda-benefits__copy{min-width:0}
+.sda-benefits__copy h3{color:#fff;font-size:clamp(20px,1.8vw,27px);line-height:1.26;font-weight:750;margin:0 0 7px}
+.sda-benefits__copy p{color:#abb0b9;font-size:clamp(15px,1.3vw,17px);line-height:1.55;margin:0;max-width:610px;text-align:justify;text-wrap:pretty}
+.sda-benefits__image-column{min-width:0;align-self:center}
+.sda-benefits__image-frame{margin:0;overflow:hidden;border:1px solid rgba(255,255,255,.15);background:#10161d;min-height:400px;aspect-ratio:1.12/1;border-radius:5px;display:flex;align-items:center;justify-content:center}
+.sda-benefits__image-frame img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 500ms cubic-bezier(.22,1,.36,1)}
+.sda-benefits__image-frame:hover img{transform:scale(1.025)}
+.sda-benefits__image-placeholder{min-height:450px;display:grid;align-content:center;justify-items:center;text-align:center;padding:35px;background:radial-gradient(circle at 40% 35%,rgba(199,70,89,.13),transparent 55%),#111b25;border:1px solid rgba(255,255,255,.12);border-radius:5px;color:#cfd7e2}
+.sda-benefits__image-placeholder>span{font-size:80px;color:var(--sda-benefits-accent)}
+.sda-benefits__image-placeholder p{font-size:19px;margin:10px 0}
+.sda-benefits--enhanced [data-benefits-reveal]{opacity:0;transform:translateY(20px);transition:opacity 650ms cubic-bezier(.22,1,.36,1),transform 650ms cubic-bezier(.22,1,.36,1)}
+.sda-benefits--enhanced .sda-benefits__item[data-benefits-reveal]{transform:translateX(-22px);transition-duration:550ms;transition-delay:calc(var(--benefit-seq,0) * 90ms)}
+.sda-benefits--enhanced .sda-benefits__image-column[data-benefits-reveal]{transform:translateX(32px);transition-duration:650ms}
+.sda-benefits--enhanced [data-benefits-reveal].is-visible{opacity:1;transform:none}
+.sda-benefits--enhanced .sda-benefits__item.is-visible:hover{transform:translateX(5px)}
+@media(max-width:1024px){.sda-benefits__container{width:min(100% - 48px,900px)}.sda-benefits__grid{gap:26px}.sda-benefits__image-frame{min-height:310px}.sda-benefits__list{gap:22px}}
+@media(max-width:760px){.sda-benefits{padding:62px 0 70px}.sda-benefits__container{width:min(100% - 36px,620px)}.sda-benefits__header{margin-bottom:29px}.sda-benefits__grid{grid-template-columns:1fr;gap:36px}.sda-benefits__item{gap:15px}.sda-benefits__check{width:48px;height:48px}.sda-benefits__check svg{width:45px;height:45px}.sda-benefits__copy h3{font-size:21px}.sda-benefits__copy p{font-size:15.5px;text-align:left}.sda-benefits__image-frame{aspect-ratio:1.25/1;min-height:240px}}
+@media(max-width:380px){.sda-benefits__title{font-size:31px}.sda-benefits__container{width:calc(100% - 28px)}.sda-benefits__check{width:40px;height:40px}.sda-benefits__check svg{width:40px;height:40px}}
+@media(prefers-reduced-motion:reduce){.sda-benefits *, .sda-benefits *::before,.sda-benefits *::after{animation:none!important;transition:none!important}.sda-benefits--enhanced [data-benefits-reveal],.sda-benefits--enhanced .sda-benefits__item[data-benefits-reveal],.sda-benefits--enhanced .sda-benefits__image-column[data-benefits-reveal]{opacity:1!important;transform:none!important}}

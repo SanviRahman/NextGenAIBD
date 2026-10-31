@@ -1,0 +1,28 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Laravel lives directly in public_html on this Hostinger site. The
+    # following directories/files contain source code and sensitive settings
+    # and MUST NOT be directly downloadable via HTTP. Frontend/backend assets
+    # and media are deliberately excluded from this restriction.
+    RewriteRule ^(?:app|bootstrap|config|database|resources|routes|storage|vendor|tests)(?:/|$) - [F,L,NC]
+    RewriteRule ^(?:\.env(?:\..*)?|\.git(?:/|$)|artisan|composer\.(?:json|lock)|package(?:-lock)?\.json|phpunit\.xml|vite\.config\.[^/]+|postcss\.config\.[^/]+)$ - [F,L,NC]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
