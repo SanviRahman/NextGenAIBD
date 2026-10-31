@@ -68,7 +68,7 @@
                             </div>
                             @if($slide->caption_text)
                                 <div class="sda-hero__caption" data-caption-animation="{{ $slide->caption_animation }}">
-                                    <span class="sda-hero__caption-kicker">Sunnah Digital Agency</span>
+                                    <span class="sda-hero__caption-kicker">NextGenAIBD</span>
                                     <span class="sda-hero__caption-text">{{ $slide->caption_text }}</span>
                                 </div>
                             @endif

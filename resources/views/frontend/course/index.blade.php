@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title', 'Course | Sunnah')
+@section('title', 'Course | NextGenAIBD')
 @section('content')
     <section class="banner-section breadcumd-banner">
         <div class="container">

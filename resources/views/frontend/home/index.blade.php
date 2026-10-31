@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-{{-- @section('title', 'Course | Sunnah digital Agency') --}}
+{{-- @section('title', 'Course | NextGenAIBD') --}}
 @section('content')
 
     {{-- Hero only: isolated component. Other homepage sections stay unchanged. --}}

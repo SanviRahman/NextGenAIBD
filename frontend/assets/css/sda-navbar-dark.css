@@ -80,3 +80,12 @@
   outline:2px solid #ed1c24;
   outline-offset:3px;
 }
+
+/* Keyboard users can open More via Tab, matching the existing mouse hover menu. */
+@media (min-width:992px) {
+  .header-section .header-wrapper .main-menu > li:focus-within > .sub-menu {
+    opacity:1;
+    visibility:visible;
+    transform:scale(1);
+  }
+}

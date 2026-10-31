@@ -180,6 +180,8 @@ $(document).ready(function () {
 	});
 	$(".main-menu li a").on("click", function (e) {
 		var element = $(this).parent("li");
+		// Dropdown toggles should not scroll the document to the top.
+		if (element.children("ul.sub-menu").length) e.preventDefault();
 		if (element.hasClass("open")) {
 			element.removeClass("open");
 			element.find("li").removeClass("open");

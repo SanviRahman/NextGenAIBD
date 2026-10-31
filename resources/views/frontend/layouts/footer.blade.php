@@ -1,5 +1,6 @@
 <!--Footer Section Start-->
-<section class="footer-section sda-footer-dark">
+{{-- Full-width 5px accent divider above the global footer, matching the provided reference. --}}
+<section class="footer-section sda-footer-dark" style="border-top: 5px solid #ea1d22;">
     {{-- Decorative dotted corner graphics intentionally removed. --}}
     <div class="container">
         <div class="footer-top pt-120 pb-80">
@@ -29,27 +30,27 @@
                         <div class="content-area">
                             <ul class="quick-link">
                                 <li>
-                                    <a href="protfolio.html">
+                                    <a href="{{ route('frontend_Project_Index') }}">
                                         Project
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="about.html">
+                                    <a href="{{ route('frontend_About_Index') }}">
                                         About us
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="blog-grid.html">
+                                    <a href="{{ route('frontend_Blog_Index') }}">
                                         Our Blog
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="team.html">
+                                    <a href="{{ route('frontend_Team_Index') }}">
                                         Our Team
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="contact.html">
+                                    <a href="{{ route('frontend_Contact_Index') }}">
                                         Contact
                                     </a>
                                 </li>
@@ -67,7 +68,7 @@
                         <div class="content-area">
                             <ul class="footer-contact-list">
                                 <li>
-                                    <a href="about.html">
+                                    <a href="{{ route('frontend_About_Index') }}">
                                         About us
                                     </a>
                                 </li>
@@ -82,12 +83,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#0">
+                                    <a href="{{ route('home_Index') }}#client-testimonials">
                                         Customer Reviews
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="about.html">
+                                    <a href="{{ route('frontend_Contact_Index') }}">
                                         FeedBack
                                     </a>
                                 </li>
@@ -109,12 +110,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ !empty($websiteInfo->email) ? 'mailto:' . $websiteInfo->email : route('frontend_Contact_Index') }}">
                                     {{ $websiteInfo->email }}
                                 </a>
                             </li>
                             <li>
-                                <a href="#0">
+                                <a href="{{ !empty($websiteInfo->number) ? 'tel:' . preg_replace('/[^+0-9]/', '', $websiteInfo->number) : route('frontend_Contact_Index') }}">
                                     {{ $websiteInfo->number }}
                                 </a>
                             </li>
@@ -153,7 +154,7 @@
             </p>
             <ul class="footer-bottom-link">
                 <li>
-                    <a href="#0">
+                    <a href="{{ route('frontend_Contact_Index') }}">
                         Support
                     </a>
                 </li>

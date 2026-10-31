@@ -1,0 +1,232 @@
+/*
+ * SDA Inner Pages - black UI skin v1.0
+ * Applies ONLY when the shared frontend layout marks a non-home page
+ * with .sda-inner-dark. No homepage component, admin view, JS workflow,
+ * migration or model is changed by these rules.
+ *
+ * Maintains the existing brand accent, typography, card structure, media,
+ * responsive layout and functional form controls.
+ */
+body.sda-inner-dark {
+  --sda-page-bg: #090d14;
+  --sda-card-bg: #171b24;
+  --sda-card-deep: #121721;
+  --sda-page-text: #f3f5fa;
+  --sda-page-muted: #bec7d4;
+  --sda-page-border: #313949;
+  --sda-page-focus: #c29bff;
+  background-color: var(--sda-page-bg) !important;
+  color: var(--sda-page-text);
+  color-scheme: dark;
+}
+
+/* The breadcrumb retains its background photograph and overlay. Footer
+   retains its separate pure-black skin. Only the inner page body changes. */
+body.sda-inner-dark > section:not(.banner-section):not(.footer-section) {
+  background: var(--sda-page-bg) !important;
+  color: var(--sda-page-text);
+}
+
+/* Some existing pages carry Bootstrap + custom !important white utility classes. */
+body.sda-inner-dark .about-section.bg-white,
+body.sda-inner-dark .team-skill-section.bg-white,
+body.sda-inner-dark .about-section.bg-one,
+body.sda-inner-dark .team-details-section.bg-two,
+body.sda-inner-dark .bg-white:not(.badge),
+body.sda-inner-dark .bg-one,
+body.sda-inner-dark .bg-two {
+  background-color: var(--sda-page-bg) !important;
+}
+
+/* Clear, readable headings, paragraph copy and legacy rich-text output. */
+body.sda-inner-dark > section:not(.footer-section) h1,
+body.sda-inner-dark > section:not(.footer-section) h2,
+body.sda-inner-dark > section:not(.footer-section) h3,
+body.sda-inner-dark > section:not(.footer-section) h4,
+body.sda-inner-dark > section:not(.footer-section) h5,
+body.sda-inner-dark > section:not(.footer-section) h6,
+body.sda-inner-dark .section-header .section-title,
+body.sda-inner-dark .blog-items .content .title,
+body.sda-inner-dark .team-details-content .head .name,
+body.sda-inner-dark .team-details-content .contact-list li ul li h6,
+body.sda-inner-dark .contact-left .items .title,
+body.sda-inner-dark .form_area .title,
+body.sda-inner-dark .blog-details-wrapper .blog-items .content .replay-wrapper .reply-head,
+body.sda-inner-dark .blog-list-right .items-box .box-head,
+body.sda-inner-dark .card .text-dark,
+body.sda-inner-dark > section:not(.footer-section) .text-dark,
+body.sda-inner-dark > section:not(.footer-section) .text-black {
+  color: var(--sda-page-text) !important;
+}
+body.sda-inner-dark > section:not(.footer-section) p,
+body.sda-inner-dark > section:not(.footer-section) .text-body,
+body.sda-inner-dark > section:not(.footer-section) .text-muted,
+body.sda-inner-dark > section:not(.footer-section) .form-text,
+body.sda-inner-dark .blog-items .content .timing-wrapper li span,
+body.sda-inner-dark .blog-list-right .items-box .post-recent li .cont .date,
+body.sda-inner-dark .team-details-content .head span,
+body.sda-inner-dark .team-details-content .contact-list li ul li span,
+body.sda-inner-dark .contact-left .items .address li,
+body.sda-inner-dark .contact-left .items .info li {
+  color: var(--sda-page-muted) !important;
+}
+
+/* Brand accents remain visible against the new dark sections. */
+body.sda-inner-dark .section-header .sub,
+body.sda-inner-dark .section-header .sub-center,
+body.sda-inner-dark .about-counter-wrapper .counter-items .counter-content h2 {
+  color: var(--sda-page-focus) !important;
+}
+body.sda-inner-dark .section-header .sub::before,
+body.sda-inner-dark .section-center .sub-center span::before {
+  background: var(--sda-page-focus) !important;
+}
+
+/* Reused cards are present on Service, Project, Course, Blog, Team, Auth,
+   Apply and detail pages. Keep a subtle contrast instead of white blocks. */
+body.sda-inner-dark .blog-items,
+body.sda-inner-dark .blog-list-wrapper .blog-items,
+body.sda-inner-dark .blog-details-wrapper .datails-left-shadow,
+body.sda-inner-dark .blog-list-wrapper .blog-list-right .items-box,
+body.sda-inner-dark .card,
+body.sda-inner-dark .testimonial-item .testimonial-inner,
+body.sda-inner-dark .accordion-item,
+body.sda-inner-dark .modal-content,
+body.sda-inner-dark .dropdown-menu {
+  background: var(--sda-card-bg) !important;
+  color: var(--sda-page-text);
+  border-color: var(--sda-page-border) !important;
+  box-shadow: 0 14px 36px rgba(0,0,0,.18);
+}
+body.sda-inner-dark .card-header,
+body.sda-inner-dark .card-footer,
+body.sda-inner-dark .accordion-button,
+body.sda-inner-dark .input-group-text {
+  background-color: var(--sda-card-deep) !important;
+  border-color: var(--sda-page-border) !important;
+  color: var(--sda-page-text) !important;
+}
+body.sda-inner-dark .blog-items .content .title:hover,
+body.sda-inner-dark .blog-items .content .link-btn:hover,
+body.sda-inner-dark .blog-list-right .items-box a:hover,
+body.sda-inner-dark .team-details-content .contact-list li ul li a:hover {
+  color: var(--sda-page-focus) !important;
+}
+body.sda-inner-dark .blog-items .link-btn,
+body.sda-inner-dark .blog-list-right .items-box .post-recent li .cont .title,
+body.sda-inner-dark .blog-list-right .items-box .categoris li a,
+body.sda-inner-dark .team-details-content .contact-list li ul li a,
+body.sda-inner-dark .contact-left .items .info li a,
+body.sda-inner-dark .list-group-item,
+body.sda-inner-dark .card a.text-dark {
+  color: var(--sda-page-text) !important;
+}
+body.sda-inner-dark .blog-list-right .items-box .tag li a,
+body.sda-inner-dark .blog-list-right .items-box .categoris li:not(:last-child),
+body.sda-inner-dark .list-group-item,
+body.sda-inner-dark .table > :not(caption) > * > * {
+  border-color: var(--sda-page-border) !important;
+}
+body.sda-inner-dark .list-group-item,
+body.sda-inner-dark .table,
+body.sda-inner-dark .table > :not(caption) > * > * {
+  background-color: transparent !important;
+  color: var(--sda-page-text) !important;
+}
+body.sda-inner-dark .table,
+body.sda-inner-dark .table-responsive {
+  --bs-table-color: var(--sda-page-text);
+  --bs-table-bg: var(--sda-card-bg);
+  --bs-table-border-color: var(--sda-page-border);
+}
+
+/* Contact split background: keep the two-column composition, remove pale strip. */
+body.sda-inner-dark .contact-section::before {
+  background-color: var(--sda-card-deep) !important;
+}
+body.sda-inner-dark .contact-left .items .follow li a i {
+  color: var(--sda-page-muted);
+}
+
+/* Form fields must be legible on black and keep focus/error states. */
+body.sda-inner-dark input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="reset"]),
+body.sda-inner-dark textarea,
+body.sda-inner-dark select,
+body.sda-inner-dark input.form-control,
+body.sda-inner-dark textarea.form-control,
+body.sda-inner-dark select.form-control,
+body.sda-inner-dark .form-select,
+body.sda-inner-dark .form_area #form .form-control input,
+body.sda-inner-dark .form_area #form .form-control textarea,
+body.sda-inner-dark .blog-list-right .items-box form input {
+  background-color: var(--sda-card-deep) !important;
+  color: var(--sda-page-text) !important;
+  border-color: var(--sda-page-border) !important;
+}
+body.sda-inner-dark input::placeholder,
+body.sda-inner-dark textarea::placeholder,
+body.sda-inner-dark .form_area #form input::placeholder,
+body.sda-inner-dark .form_area #form textarea::placeholder {
+  color: #a8b4c5 !important;
+  opacity: 1;
+}
+body.sda-inner-dark .form-label,
+body.sda-inner-dark label,
+body.sda-inner-dark .form-check-label,
+body.sda-inner-dark .form_area #form .form-control label {
+  color: var(--sda-page-text) !important;
+}
+body.sda-inner-dark input:focus-visible,
+body.sda-inner-dark textarea:focus-visible,
+body.sda-inner-dark select:focus-visible,
+body.sda-inner-dark a:focus-visible,
+body.sda-inner-dark button:focus-visible {
+  outline: 2px solid var(--sda-page-focus);
+  outline-offset: 2px;
+}
+body.sda-inner-dark .form-control:focus,
+body.sda-inner-dark .form-select:focus {
+  box-shadow: 0 0 0 .2rem rgba(194,155,255,.19);
+}
+body.sda-inner-dark .form-control::file-selector-button {
+  background: #253047;
+  color: #f7f8ff;
+  border-color: var(--sda-page-border);
+}
+body.sda-inner-dark hr,
+body.sda-inner-dark .border,
+body.sda-inner-dark .border-bottom {
+  border-color: var(--sda-page-border) !important;
+}
+
+/* Keep all pagination controls usable on the dark listing pages. */
+body.sda-inner-dark .pagination .page-link,
+body.sda-inner-dark .pagination li a {
+  background: var(--sda-card-bg) !important;
+  color: var(--sda-page-text) !important;
+  border: 1px solid var(--sda-page-border) !important;
+}
+body.sda-inner-dark .pagination .page-item.active .page-link,
+body.sda-inner-dark .pagination li.active .page-link {
+  background: #7439c8 !important;
+  color: #fff !important;
+  border-color: #9666da !important;
+}
+body.sda-inner-dark .pagination .page-item.disabled .page-link {
+  opacity: .55;
+}
+
+/* The banner already has its image overlay. Keep white headings/breadcrumbs. */
+body.sda-inner-dark .banner-section.breadcumd-banner .left-content,
+body.sda-inner-dark .banner-section.breadcumd-banner .right-content,
+body.sda-inner-dark .banner-section.breadcumd-banner .right-content li,
+body.sda-inner-dark .banner-section.breadcumd-banner .right-content a {
+  color: #fff !important;
+}
+
+@media (max-width: 767.98px) {
+  body.sda-inner-dark .blog-items .content,
+  body.sda-inner-dark .blog-list-wrapper .blog-list-right .items-box {
+    padding: 22px;
+  }
+}

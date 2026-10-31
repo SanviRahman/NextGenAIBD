@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
-@section('title', 'Blog | Sunnah digital Agency')
+@section('title', 'Blog | NextGenAIBD')
 <!-- Page header -->
 <section class="banner-section breadcumd-banner">
     <div class="container">
