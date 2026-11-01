@@ -25,7 +25,8 @@ class MetaEventRelayTest extends TestCase
         $fake->shouldNotReceive('queueBrowserEvents');
         $this->app->instance(MetaConversionsService::class, $fake);
 
-        $this->withCookie('meta_marketing_consent', 'granted')->postJson(route('tracking.meta.events'), [
+        // postJson() does not attach cookies unless credentials are enabled.
+        $this->withCookie('meta_marketing_consent', 'granted')->withCredentials()->postJson(route('tracking.meta.events'), [
             'events' => [
                 $this->sample('Lead', '01928b55-a708-4b3a-96cb-ece10006be01'),
                 $this->sample('CompleteRegistration', '01928b55-a708-4b3a-96cb-ece10006be02'),
@@ -48,7 +49,8 @@ class MetaEventRelayTest extends TestCase
         $this->app->instance(MetaConversionsService::class, $fake);
 
         $id = '01928b55-a708-4b3a-96cb-ece10006be15';
-        $this->withCookie('meta_marketing_consent', 'granted')->postJson(route('tracking.meta.events'), [
+        // postJson() does not attach cookies unless credentials are enabled.
+        $this->withCookie('meta_marketing_consent', 'granted')->withCredentials()->postJson(route('tracking.meta.events'), [
             'events' => [
                 $this->sample('CTA_Click', $id),
                 $this->sample('CTA_Click', $id),
