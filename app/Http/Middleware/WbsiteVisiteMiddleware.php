@@ -16,6 +16,12 @@ class WbsiteVisiteMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Tracking/consent relay requests are not page visits. Exclude them to
+        // prevent Meta event batches from inflating visitor and website-view counts.
+        if ($request->is('tracking/meta/*')) {
+            return $next($request);
+        }
+
         $websiteViews = WebsiteViews::first();
         if ($websiteViews) {
             $websiteViews->increment('view', 1);

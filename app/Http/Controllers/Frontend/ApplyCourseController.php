@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\ApplyCourse;
 use App\Models\Course;
+use App\Services\MetaConversionsService;
+use App\Support\MetaEventId;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
@@ -74,6 +76,23 @@ class ApplyCourseController extends Controller
             'status' => $request->status ?? 1,
         ]);
 
-        return redirect()->back()->with('success', 'Course Apply Adding Has Been Successfully');
+        $metaPixelEvents = [];
+        if ($request->cookie('meta_marketing_consent') === 'granted') {
+            // A single saved application is one conversion across channels.
+            $eventId = MetaEventId::forRecord('SubmitApplication', $courseApply->getKey());
+            app(MetaConversionsService::class)->queueApplication($request, [
+                'email' => $courseApply->email,
+                'phone' => $courseApply->number,
+            ], $eventId);
+            $metaPixelEvents[] = [
+                'event_name' => 'SubmitApplication',
+                'event_id' => $eventId,
+                'custom_data' => ['content_name' => 'Course Application', 'content_category' => 'Application'],
+            ];
+        }
+
+        return redirect()->back()
+            ->with('success', 'Course Apply Adding Has Been Successfully')
+            ->with('meta_pixel_events', $metaPixelEvents);
     }
 }

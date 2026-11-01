@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\User;
+use App\Services\MetaConversionsService;
+use App\Support\MetaEventId;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -59,6 +61,21 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        $metaPixelEvents = [];
+        if ($request->cookie('meta_marketing_consent') === 'granted') {
+            // Reuse this event ID if the saved registration is ever retried.
+            $eventId = MetaEventId::forRecord('CompleteRegistration', $user->getKey());
+            app(MetaConversionsService::class)->queueRegistration($request, [
+                'email' => $user->email,
+                'phone' => $user->number,
+            ], $eventId);
+            $metaPixelEvents[] = [
+                'event_name' => 'CompleteRegistration',
+                'event_id' => $eventId,
+                'custom_data' => ['content_name' => 'Website Registration', 'status' => 'completed'],
+            ];
+        }
+
+        return redirect(RouteServiceProvider::HOME)->with('meta_pixel_events', $metaPixelEvents);
     }
 }

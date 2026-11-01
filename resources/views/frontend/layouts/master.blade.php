@@ -11,6 +11,26 @@
         $logo = App\Models\Logo::first();
         $admin = App\Models\Admin::first();
         $websiteInfo = App\Models\WebsiteInfo::first();
+
+        // Only public Pixel IDs are rendered. CAPI tokens never leave the server.
+        $activeMetaPixelIds = App\Models\MetaPixelIntegration::query()->active()->orderBy('id')->pluck('pixel_id')->values()->all();
+        $metaConsentState = (string) request()->cookie('meta_marketing_consent', 'unknown');
+        if (!in_array($metaConsentState, ['granted', 'denied'], true)) {
+            $metaConsentState = 'unknown';
+        }
+        $metaPageEvents = [];
+        if (request()->routeIs('frontend_Service_Single')) {
+            $metaPageEvents[] = ['event_name' => 'ViewContent', 'custom_data' => ['content_category' => 'Service']];
+        } elseif (request()->routeIs('frontend_Project_Single')) {
+            $metaPageEvents[] = ['event_name' => 'ViewContent', 'custom_data' => ['content_category' => 'Project']];
+        } elseif (request()->routeIs('frontend_Blog_Single')) {
+            $metaPageEvents[] = ['event_name' => 'ViewContent', 'custom_data' => ['content_category' => 'Blog']];
+        } elseif (request()->routeIs('frontend_Course_Single')) {
+            $metaPageEvents[] = ['event_name' => 'ViewContent', 'custom_data' => ['content_category' => 'Course']];
+        } elseif (request()->routeIs('frontend_Contact_Index')) {
+            $metaPageEvents[] = ['event_name' => 'Contact', 'custom_data' => ['content_name' => 'Contact page']];
+        }
+        $metaServerConfirmedEvents = session('meta_pixel_events', []);
     @endphp
 
     <meta charset="UTF-8">
@@ -24,6 +44,28 @@
 
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    {{-- GTM-style dataLayer lifecycle starts early; no GTM container ID is required for DataLayer Checker. --}}
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.__NEXTGEN_META_GTM_JS_ID = (window.crypto && typeof window.crypto.randomUUID === 'function')
+            ? window.crypto.randomUUID()
+            : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0;
+                return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+        window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js', event_id: window.__NEXTGEN_META_GTM_JS_ID });
+        window.NEXTGEN_META = {
+            pixelIds: @json($activeMetaPixelIds),
+            consent: @json($metaConsentState),
+            eventUrl: @json(route('tracking.meta.events')),
+            consentUrl: @json(route('tracking.meta.consent')),
+            csrfToken: @json(csrf_token()),
+            pageEvents: @json($metaPageEvents),
+            serverConfirmedEvents: @json(is_array($metaServerConfirmedEvents) ? $metaServerConfirmedEvents : []),
+            gtmJsEventId: window.__NEXTGEN_META_GTM_JS_ID
+        };
+    </script>
 
     {{-- Open Graph Metadata --}}
     <meta property="og:title" content="@yield('title', 'NextGenAIBD')" />
@@ -78,7 +120,9 @@
     {{-- Page-only dark skin --}}
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/sda-inner-pages-dark.css') }}?v=1.0">
     {{-- Homepage portfolio cards and the project live-site action. --}}
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/sda-projects.css') }}?v=1.0">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/sda-projects.css') }}?v=1.2">
+    {{-- Meta consent controls (tracking scripts are loaded only after marketing consent). --}}
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/meta-consent.css') }}?v=1.0">
 
 </head>
 
@@ -141,6 +185,9 @@
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
 
     @stack('homepage_hero_scripts')
+
+    {{-- Meta Pixel + CAPI + GTM-style dataLayer lifecycle events. --}}
+    @include('frontend.partials.meta-pixel-tracking')
 
 </body>
 

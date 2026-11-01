@@ -105,7 +105,7 @@ class HomeController extends Controller
             ->where('status', '1')
             ->whereNotNull('slug')->where('slug', '!=', '')
             ->orderByDesc('created_at')->orderByDesc('id')
-            ->limit(3)->get();
+            ->get(['id', 'title', 'slug', 'image', 'sort_description', 'categories', 'video_url']);
 
         // Step-03: Homepage Services are sorted intentionally; no random shuffle.
         $homepageServicesSettings = HomepageServiceSetting::query()->first() ?? new HomepageServiceSetting();

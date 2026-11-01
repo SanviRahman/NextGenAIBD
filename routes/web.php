@@ -14,7 +14,10 @@ use App\Http\Controllers\Backend\HomepageBenefitsController;
 use App\Http\Controllers\Backend\HomepageClientsController;
 use App\Http\Controllers\Backend\HomepageTestimonialsController;
 use App\Http\Controllers\Backend\HomepageGalleryController;
+use App\Http\Controllers\Backend\MetaPixelController;
 use App\Http\Controllers\Frontend\ConsultationController;
+use App\Http\Controllers\Frontend\MetaPixelEventController;
+use App\Http\Controllers\Frontend\MetaPixelConsentController;
 use App\Http\Controllers\Backend\AdminBlogsController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminCountryController;
@@ -70,6 +73,10 @@ Route::get('/', [HomeController::class, 'home_Index'])->name('home_Index');
 
 // Step-04: Public consultation (web CSRF + rate limit).
 Route::post('/consultations', [ConsultationController::class, 'store'])->middleware('throttle:5,10')->name('consultations.store');
+
+// Meta browser-to-server relay. Consent is checked again server-side; events are never stored in MySQL.
+Route::post('/tracking/meta/events', [MetaPixelEventController::class, 'store'])->middleware('throttle:120,1')->name('tracking.meta.events');
+Route::post('/tracking/meta/consent', [MetaPixelConsentController::class, 'store'])->middleware('throttle:20,1')->name('tracking.meta.consent');
 #=====>[AppUpNext]=================>=>{ARI}======> # [{( = )}] ==>
 #=====>[AppUpNext]===>=>{ARI}===>(HomeController)==> # [{( END )}] <== FRONTEND ==>
 #=====>[AppUpNext]=================>=>{ARI}======> # [{( = )}] ==>
@@ -229,6 +236,14 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
+        // Admin-only Meta Pixel + Conversions API configuration.
+        Route::prefix('marketing/meta-pixel')->name('admin.meta-pixel.')->group(function () {
+            Route::get('/', [MetaPixelController::class, 'index'])->name('index');
+            Route::post('/integrations', [MetaPixelController::class, 'store'])->name('store');
+            Route::put('/integrations/{integration}', [MetaPixelController::class, 'update'])->name('update');
+            Route::post('/integrations/{integration}/test', [MetaPixelController::class, 'test'])->name('test');
+            Route::delete('/integrations/{integration}', [MetaPixelController::class, 'destroy'])->name('destroy');
+        });
         // Step-09: public photo mosaic, private CRUD; reuse abouts with gallery role.
         Route::prefix('homepage/gallery')->name('admin.gallery.')->group(function () {
             Route::get('/', [HomepageGalleryController::class, 'index'])->name('index');

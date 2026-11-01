@@ -1,0 +1,37 @@
+.nextgen-meta-consent {
+    position: fixed;
+    z-index: 10050;
+    left: 18px;
+    bottom: 18px;
+    width: min(520px, calc(100vw - 36px));
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 18px 20px;
+    color: #f8fafc;
+    background: #101722;
+    border: 1px solid rgba(234, 29, 34, .45);
+    border-radius: 14px;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, .32);
+    font-family: inherit;
+}
+.nextgen-meta-consent[hidden] { display: none !important; }
+.nextgen-meta-consent__copy { min-width: 0; }
+.nextgen-meta-consent__copy strong { display: block; margin-bottom: 5px; font-size: 15px; }
+.nextgen-meta-consent__copy p { margin: 0; color: #cbd5e1; font-size: 12px; line-height: 1.55; }
+.nextgen-meta-consent__actions { display: flex; flex: 0 0 auto; gap: 8px; }
+.nextgen-meta-consent__button { border: 1px solid transparent; border-radius: 8px; padding: 9px 12px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.nextgen-meta-consent__button--primary { color: #fff; background: #ea1d22; }
+.nextgen-meta-consent__button--secondary { color: #f8fafc; background: transparent; border-color: #64748b; }
+.nextgen-meta-consent-manage { position: fixed; z-index: 10040; left: 18px; bottom: 18px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 7px 11px; color: #e2e8f0; background: rgba(15,23,42,.88); font: inherit; font-size: 11px; cursor: pointer; opacity: .72; }
+.nextgen-meta-consent-manage:hover, .nextgen-meta-consent-manage:focus-visible { opacity: 1; }
+.nextgen-meta-consent:not([hidden]) ~ .nextgen-meta-consent-manage { display: none; }
+@media (max-width: 640px) {
+    .nextgen-meta-consent { left: 10px; bottom: 10px; width: calc(100vw - 20px); display: block; padding: 15px; }
+    .nextgen-meta-consent__actions { margin-top: 12px; justify-content: flex-end; }
+    .nextgen-meta-consent-manage { left: 10px; bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .nextgen-meta-consent, .nextgen-meta-consent-manage { transition: none !important; }
+}

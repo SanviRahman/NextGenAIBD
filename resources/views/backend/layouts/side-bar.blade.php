@@ -41,6 +41,13 @@
                 </a>
             </li>
             <li class="border nav-item">
+                <a class="nav-link text-dark {{ request()->routeIs('admin.meta-pixel.*') ? 'active_menu' : '' }}"
+                    href="{{ route('admin.meta-pixel.index') }}">
+                    <i class="fa-solid fa-chart-line me-2"></i>
+                    Meta Pixel &amp; CAPI
+                </a>
+            </li>
+            <li class="border nav-item">
                 <a class="nav-link text-dark {{ request()->routeIs(['backend_Personal_Info_Index', 'backend_Personal_Info_Edit']) ? 'active_menu' : '' }}"
                     href="{{ route('backend_Personal_Info_Index') }}">
                     <i class="fa-solid fa-user-gear me-2"></i>

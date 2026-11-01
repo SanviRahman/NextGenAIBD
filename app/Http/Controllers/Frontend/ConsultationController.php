@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreConsultationRequest;
 use App\Models\ConsultationRequest;
+use App\Services\MetaConversionsService;
+use App\Support\MetaEventId;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -61,8 +63,9 @@ class ConsultationController extends Controller
                 if ($phone !== '') $query->orWhere('phone', $phone);
             })->exists();
 
+        $createdLead = null;
         if (!$duplicate) {
-            ConsultationRequest::create([
+            $createdLead = ConsultationRequest::create([
                 'public_id' => (string) Str::uuid(),
                 'name' => trim($data['name']),
                 'company_name' => $data['company_name'] ?? null,
@@ -76,7 +79,26 @@ class ConsultationController extends Controller
             ]);
         }
 
-        return redirect()->to($destination)->with('consultation_success',
-            'Thank you! Your consultation request has been received. Our team will contact you.');
+        $metaPixelEvents = [];
+        if ($createdLead && $request->cookie('meta_marketing_consent') === 'granted') {
+            // A single saved consultation is one Lead across Browser and CAPI.
+            $eventId = MetaEventId::forRecord('Lead', $createdLead->public_id);
+            app(MetaConversionsService::class)->queueLead($request, [
+                'email' => $createdLead->email,
+                'phone' => $createdLead->phone,
+            ], $eventId);
+            $metaPixelEvents[] = [
+                'event_name' => 'Lead',
+                'event_id' => $eventId,
+                'custom_data' => [
+                    'content_name' => 'Free Consultation',
+                    'content_category' => 'Lead',
+                ],
+            ];
+        }
+
+        return redirect()->to($destination)
+            ->with('consultation_success', 'Thank you! Your consultation request has been received. Our team will contact you.')
+            ->with('meta_pixel_events', $metaPixelEvents);
     }
 }
