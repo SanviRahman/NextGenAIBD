@@ -83,11 +83,12 @@
                                 <!-- input -->
                                 <div class="mb-3 col-md-12">
                                     <label class="form-label" for="video_url">
-                                        Project video url <span class="text-danger">*</span>
+                                        Project live website URL <span class="text-danger">*</span>
                                     </label>
                                     <input type="url" name="video_url"
                                         value="{{ old('video_url') ?? $project->video_url }}" class="form-control"
-                                        placeholder="" id="video_url">
+                                        placeholder="https://your-project.com" id="video_url" maxlength="2048" required>
+                                    <small class="form-text text-muted">Enter the public live website URL visitors can open. This link appears on the project details page.</small>
                                 </div>
                                 <!-- input -->
                                 <div class="mb-3 col-md-12">

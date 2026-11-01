@@ -39,9 +39,9 @@
                 <li class="{{ request()->routeIs('frontend_Course_Index', 'frontend_Course_Single', 'frontend_MySelf_Index', 'frontend_Team_Index', 'frontend_Team_Single', 'frontend_Success_Story_Index', 'frontend_Contact_Index') ? 'active' : '' }}">
                     <a href="#" aria-haspopup="true">More<i class="fa fa-angle-down"></i></a>
                     <ul class="sub-menu">
-                        <li>
+                        <!-- <li>
                             <a href="{{ route('frontend_Course_Index') }}">Course</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="{{ route('frontend_MySelf_Index') }}">About Me</a>
                         </li>

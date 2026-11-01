@@ -14,7 +14,7 @@
                 <div class="sda-latest-blogs__heading">
                     <span class="sda-latest-blogs__eyebrow">INSIGHTS & IDEAS</span>
                     <h2 id="sda-latest-blogs-title">Latest <span>Blogs</span></h2>
-                    <p>Explore practical insights, fresh ideas and expert perspectives from Sunnah Digital Agency.</p>
+                    <p>Explore practical insights, fresh ideas and expert perspectives from NextGenAIBD.</p>
                 </div>
                 <a class="sda-latest-blogs__view-all" href="{{ route('frontend_Blog_Index') }}">VIEW ALL <span aria-hidden="true">↗</span></a>
             </div>

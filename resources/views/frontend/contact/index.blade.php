@@ -1,21 +1,28 @@
 @extends('frontend.layouts.master')
 @section('title', 'Contact | NextGenAIBD')
 @section('content')
+    @php
+        $contactAddress = trim((string) data_get($websiteInfo, 'address'));
+        $contactEmail = trim((string) data_get($websiteInfo, 'email'));
+        $contactPhone = trim((string) data_get($websiteInfo, 'number'));
+        $contactWhatsapp = trim((string) data_get($websiteInfo, 'wattsup_number'));
+        $contactPhoneHref = preg_replace('/[^+0-9]/', '', $contactPhone);
+        $contactWhatsappUrl = $websiteInfo?->whatsappUrl();
+        $contactSocialLinks = $websiteInfo?->socialLinks() ?? [];
+        $contactDescription = trim((string) data_get($websiteInfo, 'sort_descroption'));
+        $contactImage = trim((string) data_get($websiteInfo, 'image'));
+        $contactImageUrl = $contactImage !== ''
+            ? \App\Support\WebsiteMedia::url('media/banner/' . basename($contactImage))
+            : null;
+    @endphp
+
     <section class="banner-section breadcumd-banner">
         <div class="container">
             <div class="breadcumd-wrapper">
-                <h1 class="left-content">
-                    Contact US
-                </h1>
+                <h1 class="left-content">Contact Us</h1>
                 <ul class="right-content">
-                    <li>
-                        <a href="{{ route('home_Index') }}">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        Contact US
-                    </li>
+                    <li><a href="{{ route('home_Index') }}">Home</a></li>
+                    <li>Contact Us</li>
                 </ul>
             </div>
         </div>
@@ -27,45 +34,63 @@
                 <div class="col-lg-6 wow bounceInUp" data-wow-duration="1.5s"
                     style="visibility: visible; animation-duration: 1.5s; animation-name: bounceInUp;">
                     <div class="contact-left">
-                        <div class="items">
-                            <h4 class="title">
-                                Office Address
-                            </h4>
-                            <ul class="address">
-                                <li>#28, 10th Mai***n, 100 Feet Rd, </li>
-                                <li>HRBR Layout 1st*****, HRBR </li>
-                                <li>Layout,Kalyan Nagar, </li>
-                                <li>Mancity, England</li>
-                            </ul>
-                        </div>
-                        <div class="items">
-                            <h4 class="title">
-                                Contact Info
-                            </h4>
-                            <ul class="info">
-                                <li>Phone:<a href="#0"> (+91) 636359***</a></li>
-                                <li>Email:<a href="#0"> example***t.com</a></li>
-                            </ul>
-                        </div>
-                        <div class="items">
-                            <h4 class="title">
-                                Follow Us
-                            </h4>
-                            <ul class="follow">
-                                <li><a href="#0"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#0"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#0"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#0"><i class="fab fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
+                        @if ($contactImageUrl)
+                            <div class="items">
+                                <img src="{{ $contactImageUrl }}" alt="NextGenAIBD company image"
+                                    class="img-fluid rounded" style="max-width: 320px; max-height: 150px; object-fit: contain;"
+                                    loading="lazy" decoding="async">
+                            </div>
+                        @endif
+
+                        @if ($contactDescription !== '')
+                            <div class="items">
+                                <h4 class="title">NextGenAIBD</h4>
+                                <p>{{ $contactDescription }}</p>
+                            </div>
+                        @endif
+
+                        @if ($contactAddress !== '')
+                            <div class="items">
+                                <h4 class="title">Office Address</h4>
+                                <ul class="address">
+                                    <li>{!! nl2br(e($contactAddress)) !!}</li>
+                                </ul>
+                            </div>
+                        @endif
+
+                        @if ($contactPhone !== '' || $contactEmail !== '' || ($contactWhatsapp !== '' && $contactWhatsappUrl))
+                            <div class="items">
+                                <h4 class="title">Contact Info</h4>
+                                <ul class="info">
+                                    @if ($contactPhone !== '' && $contactPhoneHref !== '')
+                                        <li>Phone: <a href="tel:{{ $contactPhoneHref }}">{{ $contactPhone }}</a></li>
+                                    @endif
+                                    @if ($contactWhatsapp !== '' && $contactWhatsappUrl)
+                                        <li>WhatsApp: <a href="{{ $contactWhatsappUrl }}" target="_blank" rel="noopener noreferrer">{{ $contactWhatsapp }}</a></li>
+                                    @endif
+                                    @if ($contactEmail !== '')
+                                        <li>Email: <a href="mailto:{{ $contactEmail }}">{{ $contactEmail }}</a></li>
+                                    @endif
+                                </ul>
+                            </div>
+                        @endif
+
+                        @if (!empty($contactSocialLinks))
+                            <div class="items">
+                                <h4 class="title">Follow Us</h4>
+                                @include('frontend.layouts.partials.social-links', [
+                                    'socialLinks' => $contactSocialLinks,
+                                    'listClass' => 'follow',
+                                ])
+                            </div>
+                        @endif
                     </div>
                 </div>
+
                 <div class="col-lg-6 wow bounceInUp" data-wow-duration="2.5s"
                     style="visibility: visible; animation-duration: 2.5s; animation-name: bounceInUp;">
                     <div class="form_area">
-                        <h3 class="title">
-                            Get a quote
-                        </h3>
+                        <h3 class="title">Get a quote</h3>
                         <form id="form">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -94,9 +119,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="cmn--btn">
-                                <span>
-                                    Submit Now
-                                </span>
+                                <span>Submit Now</span>
                             </button>
                             <div class="thank_you">
                                 <p>Your Message is successfully sent !</p>
@@ -107,5 +130,4 @@
             </div>
         </div>
     </section>
-
 @endsection

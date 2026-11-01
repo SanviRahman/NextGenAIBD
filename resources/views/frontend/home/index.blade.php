@@ -14,6 +14,9 @@
     {{-- Step-04: 3-step consultation form. Core sections remain untouched. --}}
     @include('frontend.home.partials.consultation')
 
+    {{-- Step-11: latest active projects, reusing the existing Projects manager and records. --}}
+    @include('frontend.home.partials.projects')
+
     {{-- Step-05: verified client review profiles only; hide if none exist. --}}
     @include('frontend.home.partials.ratings')
 

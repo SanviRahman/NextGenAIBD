@@ -100,6 +100,13 @@ class HomeController extends Controller
         // Step-04: public consultation section presentation settings.
         $consultationSettings = HomepageConsultationSetting::query()->first() ?? new HomepageConsultationSetting();
 
+        // Step-11: reuse existing active Project records for the homepage portfolio.
+        $homepageProjects = Project::query()
+            ->where('status', '1')
+            ->whereNotNull('slug')->where('slug', '!=', '')
+            ->orderByDesc('created_at')->orderByDesc('id')
+            ->limit(3)->get();
+
         // Step-03: Homepage Services are sorted intentionally; no random shuffle.
         $homepageServicesSettings = HomepageServiceSetting::query()->first() ?? new HomepageServiceSetting();
         $featuredIds = HomepageFeaturedItem::query()
@@ -143,6 +150,7 @@ class HomeController extends Controller
             'homepageServicesSettings',
             'homepageServices',
             'consultationSettings',
+            'homepageProjects',
             'ratingSettings',
             'ratingPlatforms',
             'latestBlogs',

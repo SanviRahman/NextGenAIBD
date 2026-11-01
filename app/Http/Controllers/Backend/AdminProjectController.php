@@ -115,8 +115,8 @@ class AdminProjectController extends Controller
             'title' => ['required', 'min:1', 'max:255'],
             'sort_description' => ['required', 'min:1', 'max:2000'],
             'description' => ['required', 'min:1', 'max:20000'],
+            'video_url' => ['required', 'url', 'max:2048', 'starts_with:http://,https://'],
             // 'categories' => ['required', 'min:1', 'max:255'],
-            // 'video_url' => ['required', 'min:1', 'max:355'],
             // 'views' => ['required', 'min:1', 'max:255'],
         ]);
 
@@ -172,17 +172,17 @@ class AdminProjectController extends Controller
 
     public function backend_Projects_Update(Request $request, Project $project)
     {
-        try {
-            $request->validate([
-                'image' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:10240'],
-                'title' => ['required', 'min:1', 'max:255'],
-                'sort_description' => ['required', 'min:1', 'max:2000'],
-                'description' => ['required', 'min:1', 'max:20000'],
-                // 'categories' => ['required', 'min:1', 'max:255'],
-                // 'video_url' => ['required', 'min:1', 'max:255'],
-                // 'status' => ['required', 'min:1', 'max:255'],
-            ]);
+        $request->validate([
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:10240'],
+            'title' => ['required', 'min:1', 'max:255'],
+            'sort_description' => ['required', 'min:1', 'max:2000'],
+            'description' => ['required', 'min:1', 'max:20000'],
+            'video_url' => ['required', 'url', 'max:2048', 'starts_with:http://,https://'],
+            // 'categories' => ['required', 'min:1', 'max:255'],
+            // 'status' => ['required', 'min:1', 'max:255'],
+        ]);
 
+        try {
             $input = $request->all();
             if ($image = $request->file('image')) {
                 $deleteOldImage = 'media/project/' . $project->image;

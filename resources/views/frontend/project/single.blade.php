@@ -1,6 +1,15 @@
 @extends('frontend.layouts.master')
-@section('title', 'Project | ' . $project->slug . ' | Sunnah digital Agency')
-@section('content') <section class="banner-section breadcumd-banner">
+@section('title', $project->title . ' | Projects | NextGenAIBD')
+@section('content')
+    @php
+        $liveProjectUrl = trim((string) $project->video_url);
+        $liveProjectParts = $liveProjectUrl !== '' ? parse_url($liveProjectUrl) : false;
+        $hasLiveProjectUrl = filter_var($liveProjectUrl, FILTER_VALIDATE_URL) !== false
+            && is_array($liveProjectParts)
+            && in_array(strtolower((string) ($liveProjectParts['scheme'] ?? '')), ['http', 'https'], true)
+            && !empty($liveProjectParts['host']);
+    @endphp
+    <section class="banner-section breadcumd-banner">
         <div class="container">
             <div class="breadcumd-wrapper">
                 <h1 class="left-content">
@@ -41,6 +50,11 @@
                         <h1 class="mb-3">
                             {{ $project->title }}
                         </h1>
+                        @if($hasLiveProjectUrl)
+                            <a class="sda-project-live-link" href="{{ $liveProjectUrl }}" target="_blank" rel="noopener noreferrer">
+                                Visit Live Website <span aria-hidden="true">↗</span>
+                            </a>
+                        @endif
                         <!-- para -->
                         <div class="mb-5 pe-lg-10">
                             {!! $project->description !!}

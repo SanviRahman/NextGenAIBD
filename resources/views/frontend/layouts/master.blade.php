@@ -77,6 +77,8 @@
 
     {{-- Page-only dark skin --}}
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/sda-inner-pages-dark.css') }}?v=1.0">
+    {{-- Homepage portfolio cards and the project live-site action. --}}
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/sda-projects.css') }}?v=1.0">
 
 </head>
 
