@@ -45,6 +45,6 @@
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/sda-homepage-scale.css') }}?v=1.0">
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/sda-homepage-final.css') }}?v=1.0">
         {{-- Mobile hero image-first + sticky-navbar clearance. Loaded LAST; homepage only. --}}
-        <link rel="stylesheet" href="{{ asset('frontend/assets/css/sda-hero-responsive.css') }}?v=2.2">
+        <link rel="stylesheet" href="{{ asset('frontend/assets/css/sda-hero-responsive.css') }}?v=2.4">
     @endpush
 @endsection

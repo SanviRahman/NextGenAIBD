@@ -9,7 +9,7 @@
             <button type="button" id="nextgen-meta-accept" class="nextgen-meta-consent__button nextgen-meta-consent__button--primary">Accept</button>
         </div>
     </div>
-    <button type="button" id="nextgen-meta-consent-manage" class="nextgen-meta-consent-manage">Privacy choices</button>
+    {{-- Privacy preferences can be reopened through the normal footer link, not a persistent viewport overlay. --}}
 @endif
 
 <script src="{{ asset('frontend/assets/js/meta-tracking.js') }}?v=1.1" defer></script>

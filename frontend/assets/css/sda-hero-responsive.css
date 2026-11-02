@@ -290,3 +290,43 @@
     display:none!important;
   }
 }
+
+/* Hero mobile refinement v2.3: brighter, accessible copy.
+   CSS-only: slides, timers, admin content, and desktop layout are unchanged. */
+@media (max-width: 991.98px) {
+  .sda-hero .sda-hero__title {
+    color: #f8fbff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .22);
+  }
+  .sda-hero .sda-hero__title span,
+  .sda-hero .sda-hero__eyebrow {
+    color: #ff5068 !important;
+  }
+  .sda-hero .sda-hero__description {
+    color: #dce4ef !important;
+  }
+}
+/* v2.4: Keep the ORIGINAL width of both Hero cards (all breakpoints).
+   At phone widths only, make the two cards shorter while keeping their
+   existing grid columns, slider behavior and text legible. */
+@media (max-width: 767.98px) {
+  /* Original mobile height was 116px; new height is 102px. */
+  .sda-hero .sda-hero__slide {
+    grid-template-rows: var(--sda-mobile-art-height) 86px 102px;
+  }
+  /* Keep carousel navigation at the same distance below the shortened cards. */
+  .sda-hero .sda-hero__stage {
+    height: calc(var(--sda-mobile-art-height) + 268px);
+  }
+  /* Fit icons and animated subtitles without changing card widths. */
+  .sda-hero .sda-hero__slide > .sda-hero__highlight--1 .sda-hero__highlight-inner,
+  .sda-hero .sda-hero__slide > .sda-hero__highlight--2 .sda-hero__highlight-inner {
+    gap: 3px;
+    padding: 6px 8px !important;
+  }
+  .sda-hero .sda-hero__slide > .sda-hero__highlight--1 .sda-hero__highlight-icon,
+  .sda-hero .sda-hero__slide > .sda-hero__highlight--2 .sda-hero__highlight-icon {
+    width: 29px;
+    height: 28px;
+  }
+}

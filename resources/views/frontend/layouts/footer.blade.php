@@ -110,6 +110,9 @@
                 <li><a href="{{ route('frontend_Contact_Index') }}">Support</a></li>
                 <li><a href="{{ route('frontend_Service_Index') }}">Services</a></li>
                 <li><a href="#0">Terms &amp; Condition</a></li>
+                @if(count($activeMetaPixelIds) > 0)
+                    <li><button type="button" id="nextgen-meta-consent-manage" class="sda-footer-privacy-button" aria-controls="nextgen-meta-consent">Privacy choices</button></li>
+                @endif
             </ul>
         </div>
     </div>

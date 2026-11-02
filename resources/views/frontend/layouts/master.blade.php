@@ -122,7 +122,7 @@
     {{-- Homepage portfolio cards and the project live-site action. --}}
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/sda-projects.css') }}?v=1.2">
     {{-- Meta consent controls (tracking scripts are loaded only after marketing consent). --}}
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/meta-consent.css') }}?v=1.0">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/meta-consent.css') }}?v=1.1">
 
     {{-- Last-loaded, narrowly scoped brand sizing and Services mobile overflow fixes. --}}
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/sda-responsive-fixes.css') }}?v=1.0">
