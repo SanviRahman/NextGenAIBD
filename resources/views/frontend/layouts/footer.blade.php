@@ -20,7 +20,7 @@
                         <div class="footer-head">
                             <a href="{{ route('home_Index') }}" class="footer-logo1">
                                 <img src="{{ asset('/media/logo') . '/' . ($logo->frontlogo ?? 'frontlogo.png') }}"
-                                    alt="NextGenAIBD logo" style="height: 60px;">
+                                    alt="NextGenAIBD logo" class="sda-footer-brand-image">
                             </a>
                         </div>
                         @if ($footerDescription !== '')
