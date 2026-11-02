@@ -150,7 +150,7 @@
         <div class="shape2">
             <img src="{{ asset('frontend') }}/assets/images/vector/s-vector.png" alt="shape">
         </div>
-        <div class="container">
+        <!-- <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <div class="section-header wow fadeInUp" data-wow-delay="0.2s"
@@ -167,6 +167,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 @endsection

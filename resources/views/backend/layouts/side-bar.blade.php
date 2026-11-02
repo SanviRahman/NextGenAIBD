@@ -2,7 +2,7 @@
     <div class="vh-100" data-simplebar>
         <!-- Brand logo -->
         <a class="navbar-brand" href="{{ route('backend_Home_Index') }}">
-            <img style="height: 40px" src="{{ \App\Support\WebsiteMedia::url('media/logo/' . ($logo->frontlogo ?? 'frontlogo.png')) }}" alt="">
+            <img style="height: 40px" src="{{ asset('/media/logo') . '/' . ($logo->frontlogo ?? 'frontlogo.png') }}" alt="">
         </a>
         <!-- Navbar nav -->
         <ul class="navbar-nav flex-column" id="sideNavbar">

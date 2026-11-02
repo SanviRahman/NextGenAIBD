@@ -15,7 +15,7 @@
         // Show the actual authenticated admin, not whichever admin was created first.
         $admin = \Illuminate\Support\Facades\Auth::guard('admin')->user();
     @endphp
-    <link rel="shortcut icon" type="image/x-icon" href="{{ \App\Support\WebsiteMedia::url('media/logo/' . ($logo->favicon ?? 'favicon.png')) }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/media/logo') . '/' . ($logo->favicon ?? 'favicon.png') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <!-- Libs CSS -->

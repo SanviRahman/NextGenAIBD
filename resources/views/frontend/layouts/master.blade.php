@@ -71,20 +71,20 @@
     <meta property="og:title" content="@yield('title', 'NextGenAIBD')" />
     <meta property="og:description" content="@yield('meta_description', optional($seo)->description ?? 'NextGenAIBD')" />
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ \App\Support\WebsiteMedia::url('media/logo/' . ($logo->frontlogo ?? 'frontlogo.png')) }}" />
+    <meta property="og:image" content="{{ asset('/media/logo') . '/' . ($logo->frontlogo ?? 'frontlogo.png') }}" />
 
     {{-- Twitter Metadata --}}
     <meta name="twitter:site" content="@NextGenAIBD" />
     <meta name="twitter:title" content="@yield('meta_title', optional($seo)->title ?? 'NextGenAIBD')" />
     <meta name="twitter:description" content="@yield('meta_description', optional($seo)->description ?? 'NextGenAIBD')" />
     <meta name="twitter:keywords" content="@yield('meta_keywords', optional($seo)->keywords ?? 'NextGenAIBD')" />
-    <meta name="twitter:image" content="{{ \App\Support\WebsiteMedia::url('media/logo/' . ($logo->frontlogo ?? 'frontlogo.png')) }}" />
+    <meta name="twitter:image" content="{{ asset('/media/logo') . '/' . ($logo->frontlogo ?? 'frontlogo.png') }}" />
 
     {{-- Browser Title --}}
     <title>@yield('title', 'NextGenAIBD')</title>
 
     {{-- Favicon --}}
-    <link rel="shortcut icon" href="{{ \App\Support\WebsiteMedia::url('media/logo/' . ($logo->favicon ?? 'favicon.png')) }}">
+    <link rel="shortcut icon" href="{{ asset('/media/logo') . '/' . ($logo->favicon ?? 'favicon.png') }}">
 
     <!-- Bootstrap min css -->
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/bootstrap.min.css">

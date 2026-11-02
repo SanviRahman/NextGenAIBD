@@ -4,7 +4,7 @@
         <div class="header-wrapper">
             <div class="logo-menu">
                 <a href="{{ route('home_Index') }}" class="logo">
-                    <img src="{{ \App\Support\WebsiteMedia::url('media/logo/' . ($logo->frontlogo ?? 'frontlogo.png')) }}" alt="logo" style="height: 45px">
+                    <img src="{{ asset('/media/logo') . '/' . ($logo->frontlogo ?? 'frontlogo.png') }}" alt="NextGenAIBD logo" style="height: 45px">
                 </a>
             </div>
             <div class="header-bar d-lg-none">
